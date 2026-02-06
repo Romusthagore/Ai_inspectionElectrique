@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "type": "vocabulaire_technique",
+    "version": "1.0",
+    "date_generation": "2025-11-14",
+    "nombre_termes": 2,
+    "utilisation": "Définitions et explications utilisées pour enrichir les observations."
+  },
+  "termes": [
+    {
+      "terme": "Référentiel Technique",
+      "definition": "Ensemble de documents de référence pour la conception et la réalisation.",
+      "source": [
+        "LIVRE BLEU - SECURITE INCENDIE.pdf"
+      ]
+    },
+    {
+      "terme": "Nf C15 100",
+      "definition": "Terme technique 'Nf C15 100'. Consulter la documentation normative pour la définition complète.",
+      "source": [
+        "NF C15-100-1 Installations électriques à basse tension Partie 1  exigences générales_août 2024.pdf"
+      ]
+    }
+  ]
+}

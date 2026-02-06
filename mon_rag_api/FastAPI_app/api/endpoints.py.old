@@ -1,0 +1,532 @@
+"""
+Routes API pour le système RAG - Normes Électriques NFC 15-100
+"""
+
+from fastapi import APIRouter, HTTPException, Depends
+from typing import List, Optional, Dict, Any
+import logging
+from pydantic import BaseModel, Field
+from datetime import datetime
+import re
+
+logger = logging.getLogger(__name__)
+router = APIRouter(prefix="/api/v1", tags=["rag"])
+
+# ============================================================================
+# MODÈLES PYDANTIC MIS À JOUR
+# ============================================================================
+
+class AutocompleteRequest(BaseModel):
+    """Requête pour l'autocomplétion"""
+    query: str = Field(..., description="Texte à compléter")
+    max_results: int = Field(10, ge=1, le=50, description="Nombre max de résultats")
+
+class AutocompleteResponse(BaseModel):
+    """Réponse d'autocomplétion"""
+    query: str
+    suggestions: List[str]
+    count: int
+
+class ReformulateRequest(BaseModel):
+    """Requête pour la reformulation"""
+    text: str = Field(..., description="Observation à reformuler")
+    location: Optional[str] = Field(None, description="Localisation optionnelle")
+
+class ReformulateResponse(BaseModel):
+    """Réponse de reformulation COMPLÈTE"""
+    observation_corrigee: str
+    niveau_gravite: str
+    delai_recommande: str
+    references_normatives: List[str]
+    norme_applicable: Optional[str] = None
+    source: Optional[str] = "fallback_intelligent"
+
+class NormeRequest(BaseModel):
+    """Requête pour l'extraction de norme"""
+    observation: str = Field(..., description="Observation électrique")
+
+class NormeResponse(BaseModel):
+    """Réponse d'extraction de norme"""
+    norme: str
+    confidence: float = Field(0.8, ge=0.0, le=1.0)
+
+class SearchResult(BaseModel):
+    """Un résultat de recherche"""
+    content: str
+    metadata: Dict[str, Any]
+    score: float
+    source: Optional[str] = None
+
+class SearchRequest(BaseModel):
+    """Requête pour la recherche"""
+    query: str = Field(..., description="Question ou recherche")
+    max_results: int = Field(5, ge=1, le=20, description="Nombre de résultats")
+
+class SearchResponse(BaseModel):
+    """Réponse de recherche"""
+    query: str
+    results: List[SearchResult]
+    count: int
+
+# ============================================================================
+# GESTION DES SERVICES (injection depuis app.py)
+# ============================================================================
+
+_suggestion_engine_instance = None
+_vector_store_instance = None
+_correction_pipeline_instance = None
+_prescriptions_instance = None
+
+def set_suggestion_engine(engine):
+    """Définit le SuggestionEngine (appelé par app.py)"""
+    global _suggestion_engine_instance
+    _suggestion_engine_instance = engine
+    logger.info("✅ SuggestionEngine défini dans api.endpoints")
+
+def set_vector_store(store):
+    """Définit le VectorStore (appelé par app.py)"""
+    global _vector_store_instance
+    _vector_store_instance = store
+    logger.info("✅ VectorStore défini dans api.endpoints")
+
+def set_correction_pipeline(pipeline):
+    """Définit le CorrectionPipeline (appelé par app.py)"""
+    global _correction_pipeline_instance
+    _correction_pipeline_instance = pipeline
+    logger.info("✅ CorrectionPipeline défini dans api.endpoints")
+
+def set_prescriptions(prescriptions):
+    """Définit les prescriptions (appelé par app.py)"""
+    global _prescriptions_instance
+    _prescriptions_instance = prescriptions
+    logger.info(f"✅ Prescriptions définies: {len(prescriptions) if prescriptions else 0} éléments")
+
+# Fonctions de dépendance FastAPI
+def get_suggestion_engine():
+    if _suggestion_engine_instance is None:
+        raise HTTPException(status_code=503, detail="SuggestionEngine non initialisé")
+    return _suggestion_engine_instance
+
+def get_vector_store():
+    if _vector_store_instance is None:
+        raise HTTPException(status_code=503, detail="VectorStore non initialisé")
+    return _vector_store_instance
+
+def get_correction_pipeline():
+    if _correction_pipeline_instance is None:
+        raise HTTPException(status_code=503, detail="CorrectionPipeline non initialisé")
+    return _correction_pipeline_instance
+
+def get_prescriptions():
+    if _prescriptions_instance is None:
+        raise HTTPException(status_code=503, detail="Prescriptions non chargées")
+    if isinstance(_prescriptions_instance, list) and len(_prescriptions_instance) == 0:
+        raise HTTPException(status_code=503, detail="Prescriptions vides")
+    return _prescriptions_instance
+
+# ============================================================================
+# FONCTIONS UTILITAIRES POUR FALLBACK
+# ============================================================================
+
+def clean_text_for_groq(text: str) -> str:
+    """Nettoie le texte pour Groq (supprime les accents)"""
+    replacements = [
+        ('é', 'e'), ('è', 'e'), ('ê', 'e'), ('ë', 'e'),
+        ('à', 'a'), ('â', 'a'), ('ä', 'a'),
+        ('î', 'i'), ('ï', 'i'),
+        ('ô', 'o'), ('ö', 'o'),
+        ('ù', 'u'), ('û', 'u'), ('ü', 'u'),
+        ('ç', 'c'),
+        ('É', 'E'), ('È', 'E'), ('Ê', 'E'),
+        ('À', 'A'), ('Â', 'A'),
+        ('Î', 'I'),
+        ('Ô', 'O'),
+        ('Ù', 'U'),
+        ('Ç', 'C')
+    ]
+    
+    for old, new in replacements:
+        text = text.replace(old, new)
+    
+    return text
+
+def extract_norme_from_prescriptions(observation: str, prescriptions: list) -> str:
+    """Extrait la norme applicable depuis les prescriptions"""
+    try:
+        from norme_lookup import get_norme_from_db
+        norme = get_norme_from_db(observation, prescriptions)
+        
+        if norme and "pas de norme" not in norme.lower() and len(norme) > 5:
+            return norme
+        
+        # Fallback si norme non trouvée
+        return "NFC 15-100 - Référence générale"
+        
+    except Exception as e:
+        logger.warning(f"⚠️ Erreur extraction norme: {e}")
+        return "NFC 15-100"
+
+def create_intelligent_fallback(text: str, location: str = "") -> dict:
+    """Crée une réponse de fallback intelligente sans Groq"""
+    
+    text_lower = text.lower()
+    
+    # Détection de gravité améliorée
+    gravite_mots = {
+        'Élevée': ['dénudé', 'dangereux', 'risque', 'urgence', 'incendie', 
+                  'étincelle', 'fumée', 'chaud', 'brûlant', 'court-circuit',
+                  'électrocution', 'explosion', 'suréchauffement'],
+        'Moyenne': ['défectueux', 'ne fonctionne pas', 'anormal', 'usé',
+                   'vétuste', 'fissuré', 'cassé', 'oxydé', 'corrodé',
+                   'humide', 'moisi', 'surchauffe'],
+        'Basse': ['vérifier', 'contrôler', 'inspecter', 'nettoyer',
+                 'remplacer', 'améliorer', 'optimiser']
+    }
+    
+    # Déterminer gravité
+    niveau_gravite = "Basse"
+    for gravite, mots in gravite_mots.items():
+        if any(mot in text_lower for mot in mots):
+            niveau_gravite = gravite
+            break
+    
+    # Délai correspondant
+    delai_map = {
+        'Élevée': '24-48 heures',
+        'Moyenne': '1 semaine',
+        'Basse': '1 mois'
+    }
+    delai_recommande = delai_map.get(niveau_gravite, '1 mois')
+    
+    # Reformulation intelligente
+    def reformuler_observation(obs: str) -> str:
+        """Reformule l'observation de manière structurée"""
+        mots = obs.split()
+        if len(mots) >= 3:
+            element = mots[0] if len(mots[0]) > 3 else "Élément électrique"
+            probleme = " ".join(mots[1:])
+            if location:
+                return f"{element.capitalize()} présentant {probleme} - Localisation: {location}"
+            return f"{element.capitalize()} présentant {probleme}"
+        return f"Observation: {obs}" + (f" (Localisation: {location})" if location else "")
+    
+    observation_corrigee = reformuler_observation(text)
+    
+    # Références normatives basées sur contenu
+    references_normatives = ["NFC 15-100 - Installations électriques basse tension"]
+    
+    mots_techniques = {
+        'différentiel': "NFC 14-100 - Dispositifs différentiels",
+        'disjoncteur': "NFC 14-100 - Disjoncteurs",
+        'protection': "NFC 14-100 - Dispositifs de protection",
+        'terre': "NFC 15-551 - Mise à la terre",
+        'prise': "NFC 15-553 - Prises de courant",
+        'câble': "NFC 32-321 - Câbles électriques",
+        'tableau': "NFC 15-100 - Tableaux de distribution",
+        'parafoudre': "NFC 17-102 - Protection contre la foudre"
+    }
+    
+    for mot, reference in mots_techniques.items():
+        if mot in text_lower and reference not in references_normatives:
+            references_normatives.append(reference)
+    
+    return {
+        "observation_corrigee": observation_corrigee,
+        "niveau_gravite": niveau_gravite,
+        "delai_recommande": delai_recommande,
+        "references_normatives": references_normatives[:3],  # Limiter à 3
+        "source": "fallback_intelligent"
+    }
+
+# ============================================================================
+# ENDPOINTS MIS À JOUR
+# ============================================================================
+
+@router.post("/autocomplete", response_model=AutocompleteResponse)
+async def autocomplete(
+    request: AutocompleteRequest
+):
+    """
+    Autocomplétion intelligente pour observations électriques
+    """
+    try:
+        logger.info(f"🔍 Autocomplete: '{request.query}'")
+        
+        engine = get_suggestion_engine()
+        
+        if len(request.query.strip()) < 3:
+            return AutocompleteResponse(
+                query=request.query,
+                suggestions=[],
+                count=0
+            )
+        
+        suggestions = engine.get_suggestions(
+            user_input=request.query,
+            max_suggestions=request.max_results or 10
+        )
+        
+        # Formater les suggestions
+        formatted_suggestions = []
+        for sugg in suggestions:
+            if isinstance(sugg, str):
+                formatted_suggestions.append(sugg)
+            elif isinstance(sugg, dict) and "text" in sugg:
+                formatted_suggestions.append(sugg["text"])
+            else:
+                formatted_suggestions.append(str(sugg))
+        
+        logger.info(f"✅ {len(formatted_suggestions)} suggestions trouvées")
+        
+        return AutocompleteResponse(
+            query=request.query,
+            suggestions=formatted_suggestions,
+            count=len(formatted_suggestions)
+        )
+        
+    except Exception as e:
+        logger.error(f"❌ Erreur autocomplete: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/reformulate", response_model=ReformulateResponse)
+async def reformulate_observation(
+    request: ReformulateRequest
+):
+    """
+    Reformuler une observation électrique avec fallback intelligent
+    """
+    logger.info(f"✨ Reformulation: '{request.text[:50]}...'")
+    
+    if not request.text.strip():
+        raise HTTPException(status_code=400, detail="Texte vide")
+    
+    # Récupérer les services
+    pipeline = get_correction_pipeline()
+    vector_store = get_vector_store()
+    prescriptions = get_prescriptions()
+    
+    # ================ ESSAI AVEC GROQ (avec nettoyage) ================
+    try:
+        text_to_process = request.text
+        if request.location:
+            text_to_process = f"{request.text} - Localisation: {request.location}"
+        
+        # Nettoyer pour Groq
+        text_clean = clean_text_for_groq(text_to_process)
+        logger.info(f"🔧 Texte nettoyé pour Groq: '{text_clean[:50]}...'")
+        
+        # Essayer avec le pipeline
+        if hasattr(pipeline, 'corriger_observation'):
+            result = pipeline.corriger_observation(text_clean)
+            logger.info("✅ Pipeline Groq utilisé (avec texte nettoyé)")
+            
+            # Ajouter norme
+            norme = extract_norme_from_prescriptions(request.text, prescriptions)
+            result["norme_applicable"] = norme
+            result["source"] = "correction_pipeline"
+            
+            return ReformulateResponse(**result)
+            
+    except Exception as e:
+        logger.error(f"❌ Erreur Groq (même nettoyé): {e}")
+        # Continuer avec fallback
+    
+    # ================ FALLBACK INTELLIGENT ================
+    logger.info("⚠️ Utilisation du fallback intelligent")
+    
+    # Créer réponse fallback
+    result = create_intelligent_fallback(request.text, request.location)
+    
+    # Extraire norme
+    norme = extract_norme_from_prescriptions(request.text, prescriptions)
+    result["norme_applicable"] = norme
+    
+    logger.info(f"✅ Fallback: gravité={result['niveau_gravite']}, norme={norme[:30]}...")
+    
+    return ReformulateResponse(**result)
+
+@router.post("/extract_norme", response_model=NormeResponse)
+async def extract_norme_endpoint(
+    request: NormeRequest
+):
+    """
+    Extraire la norme NFC 15-100 correspondante
+    """
+    logger.info(f"📚 Extraction norme: '{request.observation[:50]}...'")
+    
+    try:
+        vector_store = get_vector_store()
+        prescriptions = get_prescriptions()
+        
+        if not request.observation.strip():
+            return NormeResponse(
+                norme="Observation vide",
+                confidence=0.1
+            )
+        
+        # 1. Essayer avec get_norme_from_db (comme PyQt)
+        norme = None
+        if prescriptions and len(prescriptions) > 0:
+            norme = extract_norme_from_prescriptions(request.observation, prescriptions)
+            logger.info(f"📖 Norme depuis prescriptions: {norme[:50]}...")
+        
+        # 2. Fallback: recherche sémantique
+        if not norme or len(norme) < 10:
+            logger.info("🔍 Fallback: recherche sémantique...")
+            try:
+                # Utiliser la méthode de recherche du vector_store
+                if hasattr(vector_store, 'similarity_search'):
+                    results = vector_store.similarity_search(request.observation, k=1)
+                elif hasattr(vector_store, 'search'):
+                    results = vector_store.search(request.observation, k=1)
+                else:
+                    results = []
+                
+                if results and len(results) > 0:
+                    result = results[0]
+                    
+                    # Extraire ART_LIBELLE
+                    if hasattr(result, 'metadata'):
+                        art_libelle = result.metadata.get('ART_LIBELLE', '')
+                        if art_libelle:
+                            norme = art_libelle
+                    elif isinstance(result, dict):
+                        metadata = result.get('metadata', {})
+                        norme = metadata.get('ART_LIBELLE', 'NFC 15-100')
+            
+            except Exception as e:
+                logger.warning(f"⚠️ Erreur recherche sémantique: {e}")
+        
+        # 3. Fallback final
+        if not norme or len(norme) < 5:
+            norme = "NFC 15-100 - Article applicable à déterminer"
+        
+        logger.info(f"✅ Norme extraite: {norme[:50]}...")
+        return NormeResponse(
+            norme=norme,
+            confidence=0.85 if len(norme) > 15 else 0.5
+        )
+        
+    except Exception as e:
+        logger.error(f"❌ Erreur extraction norme: {e}")
+        return NormeResponse(
+            norme=f"NFC 15-100 - Erreur: {str(e)[:50]}",
+            confidence=0.1
+        )
+
+@router.post("/search", response_model=SearchResponse)
+async def search_documents(
+    request: SearchRequest
+):
+    """
+    Recherche sémantique dans les 749 documents
+    """
+    try:
+        logger.info(f"🔍 Recherche: '{request.query}'")
+        
+        vector_store = get_vector_store()
+        
+        if not request.query.strip():
+            raise HTTPException(status_code=400, detail="Query vide")
+        
+        # Recherche selon la méthode disponible
+        if hasattr(vector_store, 'similarity_search'):
+            results = vector_store.similarity_search(request.query, k=request.max_results)
+        elif hasattr(vector_store, 'search'):
+            results = vector_store.search(query=request.query, k=request.max_results)
+        else:
+            raise HTTPException(status_code=500, detail="Méthode de recherche non disponible")
+        
+        # Formater les résultats
+        formatted_results = []
+        for i, result in enumerate(results):
+            metadata = {}
+            content = ""
+            score = 0.85 - (i * 0.05)  # Score décroissant
+            
+            if hasattr(result, 'metadata'):
+                metadata = result.metadata
+                content = result.page_content if hasattr(result, 'page_content') else str(result)
+            elif isinstance(result, dict):
+                metadata = result.get("metadata", {})
+                content = result.get("content", str(result))
+                score = result.get("score", score)
+            else:
+                content = str(result)
+                metadata = {"source": "vector_store"}
+            
+            formatted_results.append(SearchResult(
+                content=content[:300] + "..." if len(content) > 300 else content,
+                metadata=metadata,
+                score=min(max(score, 0.0), 1.0),
+                source=metadata.get("ART_LIBELLE", metadata.get("source"))
+            ))
+        
+        logger.info(f"✅ {len(formatted_results)} documents trouvés")
+        
+        return SearchResponse(
+            query=request.query,
+            results=formatted_results,
+            count=len(formatted_results)
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"❌ Erreur recherche: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/status")
+async def get_status():
+    """Statut détaillé du système"""
+    
+    # Compter les prescriptions
+    prescriptions_count = 0
+    if _prescriptions_instance is not None:
+        if isinstance(_prescriptions_instance, list):
+            prescriptions_count = len(_prescriptions_instance)
+        elif isinstance(_prescriptions_instance, dict):
+            prescriptions_count = len(_prescriptions_instance)
+    
+    # Compter les documents vector_store
+    vector_docs = 0
+    if _vector_store_instance is not None:
+        if hasattr(_vector_store_instance, 'index'):
+            vector_docs = _vector_store_instance.index.ntotal
+        elif hasattr(_vector_store_instance, 'docstore'):
+            vector_docs = len(_vector_store_instance.docstore)
+    
+    return {
+        "status": "operational",
+        "timestamp": datetime.now().isoformat(),
+        "services": {
+            "suggestion_engine": _suggestion_engine_instance is not None,
+            "correction_pipeline": _correction_pipeline_instance is not None,
+            "vector_store": _vector_store_instance is not None,
+            "prescriptions_loaded": prescriptions_count > 0
+        },
+        "stats": {
+            "prescriptions_count": prescriptions_count,
+            "vector_store_docs": vector_docs,
+            "api_version": "2.0.0",
+            "system": "RAG API - Normes Électriques"
+        }
+    }
+
+@router.get("/health")
+async def health_check():
+    """Vérification de santé de l'API"""
+    services_ready = (
+        _suggestion_engine_instance is not None and 
+        _vector_store_instance is not None
+    )
+    
+    return {
+        "status": "healthy" if services_ready else "degraded",
+        "timestamp": datetime.now().isoformat(),
+        "services": {
+            "suggestion_engine": _suggestion_engine_instance is not None,
+            "vector_store": _vector_store_instance is not None,
+            "correction_pipeline": _correction_pipeline_instance is not None
+        }
+    }

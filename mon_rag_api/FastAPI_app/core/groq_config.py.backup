@@ -1,0 +1,148 @@
+"""
+Configuration Groq pour le projet RAG - Normes électriques
+Version CORRIGÉE POUR config.py
+"""
+import os
+from langchain_groq import ChatGroq
+
+# =============================================================================
+# CONFIGURATION CENTRALISÉE
+# =============================================================================
+
+GROQ_CONFIG = {
+    "api_key": os.getenv("GROQ_API_KEY", ""),  # CORRECT: variable d'environnement
+    "model": "llama-3.1-8b-instant",
+    "temperature": 0,
+    "max_tokens": 2048,
+}
+
+# =============================================================================
+# MODÈLES DISPONIBLES - FORMAT LISTE (comme config.py l'attend)
+# =============================================================================
+
+AVAILABLE_MODELS = [
+    "llama-3.3-70b-versatile",
+    "llama-3.1-8b-instant",
+    "gemma2-9b-it",
+    "llama-3.1-70b-versatile",
+    "mixtral-8x7b-32768",
+    "gemma-7b-it",
+    "llama3-8b-8192",           # Pour compatibilité
+    "llama3-70b-8192",          # Pour compatibilité
+]
+
+# =============================================================================
+# CLIENT GROQ LLM - Compatible avec config.py
+# =============================================================================
+
+class GroqLLMClient:
+    """
+    Client LLM utilisant Groq via LangChain
+    Compatible avec config.py qui attend:
+    - Un constructeur avec model= et temperature=
+    - Une méthode generate(prompt)
+    """
+    
+    def __init__(self, model=None, temperature=0.1):
+        """
+        Initialise le client Groq
+        Compatible avec config.py qui appelle: GroqLLMClient(model=model, temperature=temperature)
+        
+        Args:
+            model: Nom du modèle (str)
+            temperature: Température pour la génération (float)
+        """
+        self.model = model or GROQ_CONFIG["model"]
+        self.temperature = temperature
+        self.max_tokens = GROQ_CONFIG["max_tokens"]
+        
+        # API Key - priorité: variable d'environnement > configuration
+        self.api_key = os.getenv("GROQ_API_KEY") or GROQ_CONFIG["api_key"]
+        
+        # Validation de la clé API
+        if not self.api_key:
+            print("⚠️ Clé API Groq non configurée")
+            print("💡 Définissez: export GROQ_API_KEY=votre_clé_réelle")
+            self.llm = None
+            self.is_available = False
+            return
+        
+        try:
+            # Initialiser le client LangChain Groq
+            self.llm = ChatGroq(
+                groq_api_key=self.api_key,
+                model_name=self.model,
+                temperature=self.temperature,
+                max_tokens=self.max_tokens
+            )
+            self.is_available = True
+            print(f"✅ GroqLLMClient initialisé: {self.model} (température: {self.temperature})")
+            
+        except Exception as e:
+            print(f"❌ Erreur initialisation Groq: {e}")
+            self.llm = None
+            self.is_available = False
+    
+    def generate(self, prompt, **kwargs):
+        """
+        Génère une réponse à partir d'un prompt
+        Compatible avec config.py qui appelle: client.generate(prompt)
+        
+        Args:
+            prompt: Le texte d'entrée (str)
+            **kwargs: Arguments supplémentaires (ignorés pour compatibilité)
+            
+        Returns:
+            str: La réponse générée
+        """
+        if not self.llm:
+            return "⚠️ Service Groq non disponible. Veuillez configurer votre clé API Groq."
+        
+        try:
+            response = self.llm.invoke(prompt)
+            return response.content
+        except Exception as e:
+            print(f"❌ Erreur lors de la génération: {e}")
+            return f"Erreur lors de la génération: {str(e)}"
+    
+    def complete(self, prompt, **kwargs):
+        """
+        Alias pour generate() pour compatibilité avec certains modules
+        """
+        return self.generate(prompt, **kwargs)
+
+# =============================================================================
+# TEST DE CONNEXION
+# =============================================================================
+
+def test_groq_connection():
+    """Teste la connexion à Groq"""
+    print("🧪 Test de connexion Groq...")
+    
+    # Vérifier la clé API
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        print("❌ GROQ_API_KEY non définie")
+        print("💡 Définissez: export GROQ_API_KEY=votre_clé_api")
+        return False
+    
+    print(f"✅ Clé API trouvée: {api_key[:15]}...")
+    
+    # Tester le client
+    try:
+        client = GroqLLMClient()
+        if not client.is_available:
+            print("❌ Client Groq non disponible")
+            return False
+        
+        # Test simple
+        response = client.generate("Réponds par 'OK TEST'")
+        print(f"✅ Connexion réussie! Réponse: {response}")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Erreur: {e}")
+        return False
+
+if __name__ == "__main__":
+    test_groq_connection()

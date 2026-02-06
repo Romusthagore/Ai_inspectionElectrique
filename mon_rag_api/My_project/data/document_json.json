@@ -1,0 +1,47 @@
+[
+  {
+    "id": "prescription_0001",
+    "Thème": "Appareils amovibles",
+    "Verbe": "Remplacer",
+    "Complément": "le câble rigide par un souple pour l'alimentation de ",
+    "ART_LIBELLE": "R.4226-12/ Arrêté 20/12/2011 art 4 / Norme NF C 15-100 art 559",
+    "contenu": "Remplacer le câble rigide par un souple pour l'alimentation de",
+    "timestamp": "2025-12-03T09:54:33.134916"
+  },
+  {
+    "id": "prescription_0002",
+    "Thème": "Appareils amovibles",
+    "Verbe": "Utiliser",
+    "Complément": "des baladeuses conformes à la NF EN 60598-2-8",
+    "ART_LIBELLE": "R.4226-12/ Arrêté 20/12/2011 art 4 / Norme NF C 15-100 art 559",
+    "contenu": "Utiliser des baladeuses conformes à la NF EN 60598-2-8",
+    "timestamp": "2025-12-03T09:54:33.135109"
+  },
+  {
+    "id": "prescription_0003",
+    "Thème": "Appareils amovibles",
+    "Verbe": "Remplacer",
+    "Complément": "les enrouleurs par des modèles conformes à la NF EN 61316",
+    "ART_LIBELLE": "R.4226-12/ Arrêté 20/12/2011 art 4 / Norme NF C 15-100 art 559",
+    "contenu": "Remplacer les enrouleurs par des modèles conformes à la NF EN 61316",
+    "timestamp": "2025-12-03T09:54:33.135266"
+  },
+  {
+    "id": "prescription_0004",
+    "Thème": "Appareils amovibles",
+    "Verbe": "Remplacer",
+    "Complément": "le câble d'alimentation bifilaire par un modèle assurant la continuité du conducteur de protection",
+    "ART_LIBELLE": "R.4226-12/ Arrêté 20/12/2011 art 4 / Norme NF C 15-100 art 559",
+    "contenu": "Remplacer le câble d'alimentation bifilaire par un modèle assurant la continuité du conducteur de protection",
+    "timestamp": "2025-12-03T09:54:33.135427"
+  },
+  {
+    "id": "prescription_0005",
+    "Thème": "Appareils amovibles",
+    "Verbe": "Remplacer",
+    "Complément": "le câble d'alimentation dont l'isolant est détérioré",
+    "ART_LIBELLE": "R.4226-12/ Arrêté 20/12/2011 art 4 / Norme NF C 15-100 art 559",
+    "contenu": "Remplacer le câble d'alimentation dont l'isolant est détérioré",
+    "timestamp": "2025-12-03T09:54:33.135584"
+  }
+]

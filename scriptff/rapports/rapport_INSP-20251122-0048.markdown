@@ -1,0 +1,131 @@
+# Rapport d'Inspection Électrique
+
+**Rapport N°**: INSP-20251122-0048
+**Date d'inspection**: 22/11/2025
+**Date de génération**: 22/11/2025 00:48
+
+---
+
+## 📍 Informations du Site
+
+- **Site**: Résidence Les Oliviers - Bâtiment A
+- **Adresse**: 45 Avenue de la République, 13001 Marseille
+- **Inspecteur**: Jean-Pierre Martin
+- **Norme de référence**: NFC 15-100
+
+---
+
+## 📊 Statistiques Générales
+
+- **Total d'observations**: 5
+- 🔴 **Critiques**: 3
+- 🟠 **Majeurs**: 2
+- 🟢 **Mineurs**: 0
+
+**Taux de conformité**: 40.0%
+
+---
+
+## 📝 Résumé Exécutif
+
+L'inspection a révélé 5 observation(s) au total. ⚠️ ATTENTION: 3 observation(s) critique(s) nécessitant une intervention IMMÉDIATE. 2 observation(s) majeure(s) à corriger sous 30 jours.
+
+### ⚠️ Points critiques nécessitant une attention immédiate:
+- Absence de prise de terre dans la cuisine, non-conformité aux exigences de sécurité électrique
+- Absence de disjoncteur différentiel de sensibilité 30 mA dans la salle de bain, non conforme aux exigences de sécurité électrique
+- Absence de protection parafoudre pour prévenir les surtensions de manœuvre et assurer la protection des équipements sensibles
+
+---
+
+## 🔍 Observations Détaillées
+
+### 🔴 Observations Critiques (3)
+
+#### 1. Absence de prise de terre dans la cuisine, non-conformité aux exigences de sécurité électrique
+
+**📍 Localisation**: Cuisine
+**📚 Références**: NFC 15-100 Article 55.1 - Exigences générales pour les installations électriques dans les locaux à usage culinaire, NFC 15-100 Article 61.1 - Dispositions spécifiques pour les prises de courant et les prises de terre dans les cuisines
+**🚨 Risques**: Risque d'électrocution, Risque d'incendie
+
+**🔧 Actions correctives**:
+  - Installation d'une prise de terre conforme aux normes
+  - Vérification et mise à jour de l'installation électrique pour garantir la sécurité
+
+**⏰ Délai recommandé**: immédiat
+
+---
+
+#### 2. Absence de disjoncteur différentiel de sensibilité 30 mA dans la salle de bain, non conforme aux exigences de sécurité électrique
+
+**📍 Localisation**: Salle de bain
+**📚 Références**: NFC 15-100 Article 55.1 - Disjoncteurs différentiels de sensibilité 30 mA obligatoires dans les salles de bain, NFC 15-100 Article 56.2 - Exigences pour les installations électriques dans les locaux à usage d'habitation, notamment les salles de bain
+**🚨 Risques**: Risque d'électrocution, Risque d'incendie
+
+**🔧 Actions correctives**:
+  - Installation d'un disjoncteur différentiel de sensibilité 30 mA dans la salle de bain
+  - Vérification de la conformité de l'installation électrique aux normes NFC 15-100
+
+**⏰ Délai recommandé**: immédiat
+
+---
+
+#### 3. Absence de protection parafoudre pour prévenir les surtensions de manœuvre et assurer la protection des équipements sensibles
+
+**📍 Localisation**: À proximité des équipements sensibles et à l’origine de l’installation
+**📚 Références**: NFC 15-100 Article 445 - Les dispositifs de protection situés en amont de l’origine de l’installation ne peuvent pas être considérés comme une protection contre les surintensités du parafoudre, NFC 15-100 Article 436 - Des parafoudres dédiés à la protection contre les surtensions de manœuvre peuvent être nécessaires pour prévenir le vieillissement prématuré des équipements sensibles
+**🚨 Risques**: Risque d'électrocution, Risque d'incendie, Risque de dommages aux équipements
+
+**🔧 Actions correctives**:
+  - Installation de parafoudres dédiés à la protection contre les surtensions de manœuvre
+  - Vérification de la conformité des dispositifs de protection existants
+  - Mise en place d'une protection complète contre les surintensités
+
+**⏰ Délai recommandé**: immédiat
+
+---
+
+### 🟠 Observations Majeurs (2)
+
+#### 1. Câble de section insuffisante pour le chauffage du salon, ne respectant pas les exigences de la norme NFC 15-100 en termes de dimensionnement et de protection contre les surcharges électriques
+
+**📍 Localisation**: Salon, système de chauffage
+**📚 Références**: NFC 15-100 Article 526.10.2.1 - Connexion des appareils par l'intermédiaire d'une canalisation semi-fixe, NFC 15-100 Article 270.21.1 - Définition d'un socle de prise de courant et des exigences pour les câbles et les conducteurs
+**🚨 Risques**: Risque d'incendie, Risque d'électrocution, Risque de surchauffe
+
+**🔧 Actions correctives**:
+  - Vérifier et ajuster la section des câbles pour le chauffage du salon selon les spécifications de la norme NFC 15-100
+  - Assurer que les câbles soient protégés contre les surcharges électriques et les conditions environnementales
+  - Réviser l'installation électrique pour garantir la conformité avec les articles pertinents de la norme NFC 15-100
+
+**⏰ Délai recommandé**: 30 jours
+
+---
+
+#### 2. Tableau électrique encombré dans le garage, nécessitant une mise en conformité avec les normes électriques françaises NFC 15-100
+
+**📍 Localisation**: Garage
+**📚 Références**: NFC 15-100 Article 551.1.2 - Sont notamment pris en considèration les générateurs d’énergie électrique possédant les caractéristiques électriques suivantes, NFC 15-100 Article EL 14 - Alimentation électrique des installations de sécurité à partir d’une dérivation issue du tableau principal
+**🚨 Risques**: Risque d'incendie, Risque d'électrocution, Risque de dysfonctionnement des installations de sécurité
+
+**🔧 Actions correctives**:
+  - Nettoyage et dégagement du tableau électrique
+  - Vérification et mise en conformité des installations électriques avec les normes NFC 15-100
+  - Installation d'un système de protection contre les surcharges et les courts-circuits
+
+**⏰ Délai recommandé**: 30 jours
+
+---
+
+## 💡 Recommandations Générales
+- Traiter en PRIORITÉ les observations critiques avant toute remise en service
+- Planifier les corrections des observations majeures dans les 30 jours
+- Consulter les articles spécifiques de la NFC 15-100 mentionnés dans ce rapport
+- Effectuer un contrôle de suivi après correction des non-conformités
+- Tenir un registre de maintenance préventive conforme aux normes
+
+---
+
+
+*Rapport généré automatiquement le 22/11/2025 00:48*
+
+*Conforme à la norme NFC 15-100*

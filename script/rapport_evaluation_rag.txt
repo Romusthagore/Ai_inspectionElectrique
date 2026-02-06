@@ -1,0 +1,85 @@
+================================================================================
+📊 RAPPORT D'ÉVALUATION - SYSTÈME D'AUTOCOMPLÉTION RAG
+================================================================================
+
+🎯 MÉTRIQUES GLOBALES
+------------------------------------------------------------
+Recall@ 1:       0.0%
+Precision@ 1:    0.0%
+Recall@ 3:       0.0%
+Precision@ 3:    0.0%
+Recall@ 5:       0.0%
+
+Recall@10:       0.0%
+
+MRR:              0.000
+Coverage@20:      0.0%
+Similarité sém.:  0.261
+
+Verbes testés:    10
+
+📈 ANALYSE DE PERFORMANCE
+------------------------------------------------------------
+
+🏆 EXCELLENTE PERFORMANCE (Recall@5 ≥ 50%): 0 verbes
+
+⚡ PERFORMANCE MOYENNE (20% ≤ Recall@5 < 50%): 0 verbes
+
+⚠️  FAIBLE PERFORMANCE (Recall@5 < 20%): 10 verbes
+  'remplacer': 0.0%
+  'installer': 0.0%
+  'protéger': 0.0%
+  'réaliser': 0.0%
+  'alimenter': 0.0%
+
+🔍 EXEMPLES DÉTAILLÉS (3 premiers verbes)
+------------------------------------------------------------
+
+Verbe: 'remplacer'
+  Compléments attendus: 115
+    ✓ le luminaire par un modèle d'indice de protection IP 6X (risque d'accumulation de poussière)
+    ✓ le transformateur IT médical par un modèle conforme à la norme NF EN 61558-2-15
+    ✓ les tubes "IRO" par des conduits MRL relier au conducteur de protection
+  Suggestions RAG: 3
+    1. remplacer le disjoncteur différentiel
+    2. remplacer les câbles endommagés
+    3. remplacer la prise de terre
+  Métriques: Recall@5=0.0%, Precision@5=0.0%, F1@5=0.0%
+
+Verbe: 'installer'
+  Compléments attendus: 64
+    ✓ un transformateur pour l'enseigne haute tension conforme à la norme EN 61050
+    ✓ un moyen de chauffage dans le local
+    ✓ en dehors du volume 2 de la salle d'eau le matériel suivant
+  Suggestions RAG: 3
+    1. installer une protection différentielle
+    2. installer un parafoudre
+    3. installer des prises de terre
+  Métriques: Recall@5=0.0%, Precision@5=0.0%, F1@5=0.0%
+
+Verbe: 'protéger'
+  Compléments attendus: 46
+    ✓ contre les surintensités en amont du local, la canalisation
+    ✓ mécaniquement la canalisation enterré
+    ✓ contre les défauts à la terre par un relais homopolaire, le circuit
+  Suggestions RAG: 1
+    1. protéger selon normes
+  Métriques: Recall@5=0.0%, Precision@5=0.0%, F1@5=0.0%
+
+💡 RECOMMANDATIONS
+------------------------------------------------------------
+
+1. 📈 AMÉLIORER LE RECALL (actuellement bas)
+   • Augmenter k_documents dans la recherche vectorielle
+   • Réduire min_similarity pour récupérer plus de documents
+   • Enrichir la base de données vectorielle
+
+2. 🎯 AMÉLIORER LA PRÉCISION (actuellement basse)
+   • Augmenter min_similarity pour filtrer mieux
+   • Améliorer la qualité des embeddings
+   • Ajouter un re-ranking des résultats
+
+3. 🔧 OPTIMISATIONS TECHNIQUES
+   • Implémenter un cache pour les verbes fréquents
+   • Tester différents modèles d'embedding
+   • Ajouter du contexte (localisation, type d'observation)

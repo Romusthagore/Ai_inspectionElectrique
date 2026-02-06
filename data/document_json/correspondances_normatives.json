@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "type": "correspondances_normatives",
+    "version": "1.0",
+    "date_generation": "2025-11-14",
+    "description": "Lien entre défauts électriques courants et articles normatifs associés."
+  },
+  "correspondances": [
+    {
+      "categorie": "Sécurité incendie",
+      "articles": [
+        "NF C 15-100 § 411"
+      ]
+    }
+  ]
+}

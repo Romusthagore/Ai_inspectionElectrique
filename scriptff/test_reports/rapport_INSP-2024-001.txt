@@ -1,0 +1,52 @@
+================================================================================
+                        Rapport d'Inspection Électrique                         
+================================================================================
+
+Rapport N°: INSP-2024-001
+Date d'inspection: 22/11/2024
+Site: Immeuble Les Palmiers
+Inspecteur: Jean Dupont
+
+--------------------------------------------------------------------------------
+
+STATISTIQUES:
+  Total: 3 observations
+  Critiques: 1
+  Majeurs: 1
+  Mineurs: 1
+
+--------------------------------------------------------------------------------
+
+OBSERVATIONS DÉTAILLÉES:
+
+
+CRITIQUES (1):
+--------------------------------------------------------------------------------
+
+1. Absence de dispositif différentiel 30mA dans le circuit cuisine
+   Localisation: Cuisine
+   Références: NFC 15-100 Article 55.1, NFC 15-100 Article 411.3.3
+   Délai: immédiat
+
+
+MAJEURS (1):
+--------------------------------------------------------------------------------
+
+1. Câble de section insuffisante sur le circuit chauffage
+   Localisation: Salon
+   Références: NFC 15-100 Article 52.1
+   Délai: 30 jours
+
+
+MINEURS (1):
+--------------------------------------------------------------------------------
+
+1. Tableau électrique encombré - espace de maintenance insuffisant
+   Localisation: Garage
+   Références: NFC 15-100 Article 55.2
+   Délai: 90 jours
+
+
+================================================================================
+Généré le 22/11/2025 11:51
+================================================================================

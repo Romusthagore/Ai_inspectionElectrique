@@ -1,0 +1,86 @@
+nohup: ignoring input
+INFO:app:✅ Application FastAPI créée: RAG API - Normes Électriques
+INFO:app:======================================================================
+INFO:app:✅ ROUTER API INCLUS AVEC SUCCÈS
+INFO:app:======================================================================
+INFO:app:📍 Routes disponibles:
+INFO:app:   POST /api/v1/autocomplete      - Autocomplétion intelligente
+INFO:app:   POST /api/v1/reformulate       - Reformulation d'observation
+INFO:app:   POST /api/v1/extract_norme     - Extraction de norme
+INFO:app:   POST /api/v1/search            - Recherche sémantique
+INFO:app:   GET  /api/v1/status            - Statut des services
+INFO:app:   GET  /api/v1/health            - Santé de l'API
+INFO:app:======================================================================
+INFO:app:🔍 Vérification des routes enregistrées:
+INFO:app:   HEAD, GET /openapi.json
+INFO:app:   HEAD, GET /docs
+INFO:app:   HEAD, GET /docs/oauth2-redirect
+INFO:app:   HEAD, GET /redoc
+INFO:app:   GET      /
+INFO:app:   GET      /health
+INFO:app:   POST     /api/v1/autocomplete
+INFO:app:   POST     /api/v1/reformulate
+INFO:app:   POST     /api/v1/extract_norme
+INFO:app:   POST     /api/v1/search
+INFO:app:   GET      /api/v1/status
+INFO:app:   GET      /api/v1/health
+INFO:app:📊 Total: 12 routes enregistrées
+INFO:     Started server process [91911]
+INFO:     Waiting for application startup.
+INFO:app:🚀 Démarrage des services RAG...
+INFO:faiss.loader:Loading faiss with AVX2 support.
+INFO:faiss.loader:Successfully loaded faiss with AVX2 support.
+INFO:core.config:✅ Répertoires initialisés
+INFO:core.config: Configuration validée
+INFO:core.vector_store:📦 Initialisation VectorStore...
+INFO:core.vector_store:⏳ Chargement modèle: sentence-transformers/all-MiniLM-L6-v2
+INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
+INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+INFO:core.vector_store:✅ Modèle chargé: sentence-transformers/all-MiniLM-L6-v2
+INFO:core.vector_store:✅ Index FAISS chargé: 749 vecteurs
+INFO:core.vector_store:✅ Métadonnées chargées: 749 éléments
+INFO:core.vector_store:✅ VectorStore chargé - 749 documents
+INFO:app:✅ VectorStore: 749 vecteurs
+INFO:core.retriever:🔄 Initialisation du cache...
+INFO:core.vector_store:🔍 'protection différentielle' -> 10 résultats
+INFO:core.vector_store:🔍 'mise à la terre' -> 10 résultats
+INFO:core.vector_store:🔍 'disjoncteur' -> 10 résultats
+INFO:core.vector_store:🔍 'câble' -> 10 résultats
+INFO:core.vector_store:🔍 'tableau électrique' -> 10 résultats
+INFO:core.vector_store:🔍 'parafoudre' -> 10 résultats
+INFO:core.vector_store:🔍 'liaison équipotentielle' -> 10 résultats
+INFO:core.vector_store:🔍 'schéma TT' -> 10 résultats
+INFO:core.vector_store:🔍 'schéma TN' -> 10 résultats
+INFO:core.vector_store:🔍 'schéma IT' -> 10 résultats
+INFO:core.retriever:✅ Cache initialisé : 10 requêtes
+INFO:core.retriever:✅ Retriever OPTIMISÉ initialisé (k=5, min_sim=0.65, cache=True)
+INFO:core.context_builder:✅ ContextBuilder initialisé
+INFO:core.correction_pipeline:✅ CorrectionPipeline initialisé avec modèle: None
+INFO:core.correction_pipeline:📏 Validation activée : min 20 caractères, 4 mots
+INFO:app:✅ LLM extrait: GroqLLMClient
+INFO:core.vector_store:📥 749 documents chargés
+INFO:core.suggestion_engine:✅ Index compléments construit: 57 verbes (normalisés)
+INFO:core.suggestion_engine:✅ SuggestionEngine INSENSIBLE AUX ACCENTS initialisé
+INFO:core.suggestion_engine:📊 Index chargé: 57 verbes, 749 compléments
+INFO:app:✅ SuggestionEngine: 57 verbes chargés
+INFO:app:📊 Exemple de verbes: ['asservir', 'regrouper', 'remettre', 'solidariser', 'isoler', 'installer', 'obturer', 'interconnecter', 'reporter', 'identifier']
+INFO:app:📊 Total compléments: 749
+INFO:app:  - 'remplacer': 144 compléments
+INFO:app:    Ex: Remplacer le câble rigide par un souple pour l'alimentation ...
+INFO:app:  - 'utiliser': 6 compléments
+INFO:app:    Ex: Utiliser des baladeuses conformes à la NF EN 60598-2-8...
+INFO:app:  - 'proteger': 62 compléments
+INFO:app:    Ex: Protéger par un indice IPXXC les appareils amovibles, autres...
+INFO:api.endpoints:✅ SuggestionEngine défini
+INFO:api.endpoints:✅ VectorStore défini
+INFO:api.endpoints:✅ CorrectionPipeline défini
+INFO:api.endpoints:✅ Prescriptions définies: 749 éléments
+INFO:app:✅ Prescriptions injectées: 749 éléments
+INFO:app:✅ Services injectés dans api.endpoints
+INFO:app:✅ Tous les services initialisés
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on addressINFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:app:👋 Arrêt des services RAG...
+INFO:     Application shutdown complete.
+INFO:     Finished server process [91844]

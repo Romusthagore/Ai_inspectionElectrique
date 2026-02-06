@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+"""
+Pipeline de correction - VERSION SANS ACCENTS
+"""
+import json
+import re
+import logging
+import unicodedata
+from typing import List, Dict, Any
+
+logger = logging.getLogger(__name__)
+
+
+def safe_str(obj) -> str:
+    """Convertit n'importe quoi en string safe sans accents"""
+    try:
+        text = str(obj)
+        nfd = unicodedata.normalize('NFD', text)
+        return ''.join(char for char in nfd if unicodedata.category(char) != 'Mn')
+    except:
+        return str(obj).encode('ascii', 'ignore').decode('ascii')
+
+
+class CorrectionPipeline:
+    def __init__(self, context_builder=None, llm_model: str = None, temperature: float = 0.1):
+        from core.groq_config import GroqLLMClient
+        self.llm = GroqLLMClient(model=llm_model, temperature=temperature)
+        logger.info("CorrectionPipeline initialise")
+
+    def corriger_observation(self, observation_brute: str, k_documents: int = 3) -> Dict[str, Any]:
+        """Version SANS ACCENTS dans les logs"""
+        try:
+            logger.info(f"Reformulation: '{observation_brute[:50]}...'")
+            
+            # Prompt
+            prompt = f"""Correct this electrical observation: {observation_brute}
+Return only the corrected phrase in French."""
+            
+            # Appel LLM - AVEC GESTION SAFE DES ERREURS
+            response = ""
+            try:
+                if hasattr(self.llm, 'generate'):
+                    response = self.llm.generate(prompt)
+                elif hasattr(self.llm, 'invoke'):
+                    response = self.llm.invoke(prompt)
+                else:
+                    response = observation_brute
+            except Exception as llm_error:
+                # Convertir l'erreur en safe string
+                error_msg = safe_str(llm_error)
+                logger.error(f"Erreur LLM: {error_msg}")
+                response = observation_brute
+            
+            # Traiter la reponse
+            if response:
+                response_clean = str(response).strip().strip('"').strip("'")
+                if len(response_clean) > 10:
+                    observation_corrigee = response_clean
+                else:
+                    observation_corrigee = observation_brute
+            else:
+                observation_corrigee = observation_brute
+            
+            return {
+                "statut": "SUCCESS",
+                "observation_corrigee": observation_corrigee,
+                "source": "correction_pipeline_llm"
+            }
+            
+        except Exception as e:
+            error_msg = safe_str(e)
+            logger.error(f"Erreur generation: {error_msg}")
+            return {
+                "statut": "ERROR",
+                "erreur": error_msg,
+                "observation_corrigee": observation_brute
+            }
+
+
+# ============================================================
+# FONCTION FACTORY
+# ============================================================
+
+_pipeline_instance = None
+
+def get_correction_pipeline(llm_model: str = None, temperature: float = 0.1):
+    """Retourne l'instance singleton du pipeline"""
+    global _pipeline_instance
+    
+    if _pipeline_instance is None:
+        logger.info("Creation de l'instance CorrectionPipeline")
+        _pipeline_instance = CorrectionPipeline(
+            llm_model=llm_model,
+            temperature=temperature
+        )
+    
+    return _pipeline_instance

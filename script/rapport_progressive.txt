@@ -1,0 +1,189 @@
+================================================================================
+📊 RAPPORT D'ÉVALUATION - AUTOCOMPLÉTION PROGRESSIVE
+================================================================================
+
+💡 Méthodologie:
+  Ce système simule la frappe progressive de l'utilisateur
+  et mesure la qualité des suggestions à différents stades.
+
+================================================================================
+🎯 PERFORMANCE PAR STADE DE FRAPPE
+================================================================================
+
+📍 Après le verbe seul (ex: "remplacer")
+------------------------------------------------------------
+  Recall@ 1:       3.8%
+  Precision@ 1:  100.0%
+  F1-Score@ 1:    7.1%
+  Recall@ 3:       9.7%
+  Precision@ 3:  100.0%
+  F1-Score@ 3:   17.0%
+  Recall@ 5:      16.2%
+  Precision@ 5:  100.0%
+  F1-Score@ 5:   26.0%
+  Recall@10:      32.7%
+  Precision@10:  100.0%
+  F1-Score@10:   46.2%
+  MRR:            1.000
+
+📍 Après verbe + début complément (ex: "remplacer le dis")
+------------------------------------------------------------
+  Recall@ 1:       3.8%
+  Precision@ 1:  100.0%
+  F1-Score@ 1:    7.1%
+  Recall@ 3:       3.8%
+  Precision@ 3:  100.0%
+  F1-Score@ 3:    7.1%
+  Recall@ 5:       3.8%
+  Precision@ 5:  100.0%
+  F1-Score@ 5:    7.1%
+  Recall@10:       3.8%
+  Precision@10:  100.0%
+  F1-Score@10:    7.1%
+  MRR:            1.000
+
+📍 Frappe progressive (simulation caractère par caractère)
+------------------------------------------------------------
+  Recall@ 1:       0.0%
+  Precision@ 1:    0.0%
+  F1-Score@ 1:    0.0%
+  Recall@ 3:       0.0%
+  Precision@ 3:    0.0%
+  F1-Score@ 3:    0.0%
+  Recall@ 5:       0.0%
+  Precision@ 5:    0.0%
+  F1-Score@ 5:    0.0%
+  MRR:            0.000
+
+================================================================================
+🔍 EXEMPLES DÉTAILLÉS
+================================================================================
+
+📝 Verbe: 'remplacer'
+   Compléments attendus (3 premiers):
+     ✓ la boîte de coupure HT-EP par un modèle supportant l'intensité nominale et en court-circuit de
+     ✓ le fusible calibré placé sur le conducteur neutre par une cartouche de neutre
+     ✓ le câble d'alimentation dont l'isolant est détérioré
+
+   STADE 1: Requête = 'remplacer'
+   Suggestions (top 5):
+     ✓ 1. la boîte de coupure ht-ep par un modèle supportant l'intensité nominale et en court-circuit de
+     ✓ 2. le fusible calibré placé sur le conducteur neutre par une cartouche de neutre
+     ✓ 3. le câble d'alimentation dont l'isolant est détérioré
+     ✗ 4. l'appareillage par un modèle supportant une intensité de court-circuit de
+     ✗ 5. la source centralisée à batterie d'accumulateurs par un modèle conforme à la norme nf en 50171
+   Recall@5: 5.2%
+
+   STADE 2: Requête = 'remplacer la boîte'
+   Suggestions (top 5):
+     ✓ 1. la boîte de coupure ht-ep par un modèle supportant l'intensité nominale et en court-circuit de
+   Recall@5: 0.9%
+
+📝 Verbe: 'installer'
+   Compléments attendus (3 premiers):
+     ✓ un ou des dispositifs d'urgence
+     ✓ un tapis isolant devant les pièces nues sous tension
+     ✓ un dispositif différentiel à courant résiduel 30mA
+
+   STADE 1: Requête = 'installer'
+   Suggestions (top 5):
+     ✓ 1. un ou des dispositifs d'urgence
+     ✓ 2. un tapis isolant devant les pièces nues sous tension
+     ✓ 3. un dispositif différentiel à courant résiduel 30ma
+     ✗ 4. un dispositif différentiel résiduel 30ma afin d'assurer la protection complémentaire
+     ✗ 5. le dispositif de télécommande de mise à l'état de repos, à proximité du dispositif de coupure de l'éclairage normal
+   Recall@5: 7.8%
+
+   STADE 2: Requête = 'installer un ou'
+   Suggestions (top 5):
+     ✓ 1. un ou des dispositifs d'urgence
+   Recall@5: 1.6%
+
+📝 Verbe: 'protéger'
+   Compléments attendus (3 premiers):
+     ✓ mécaniquement la canalisation enterré
+     ✓ le transformateur contre le risque d'incendie, en cas de fuite éventuelle du diélectrique liquide
+     ✓ le secondaire du transformateur contre les surcharges
+
+   STADE 1: Requête = 'protéger'
+   Suggestions (top 5):
+     ✓ 1. mécaniquement la canalisation enterré
+     ✓ 2. le transformateur contre le risque d'incendie, en cas de fuite éventuelle du diélectrique liquide
+     ✓ 3. le secondaire du transformateur contre les surcharges
+     ✗ 4. l'installation tbtf contre les contacts  indirects
+     ✗ 5. contre les contacts directs les pièces nues sous tension accessibles
+   Recall@5: 13.0%
+
+   STADE 2: Requête = 'protéger mécaniquement la'
+   Suggestions (top 5):
+     ✓ 1. mécaniquement la canalisation enterré
+   Recall@5: 2.2%
+
+📝 Verbe: 'réaliser'
+   Compléments attendus (3 premiers):
+     ✓ la coordination entre les dispositifs de protection de surcharge et de court-cuicuit
+     ✓ la sélectivité totale entre les différents circuits de sécurité
+     ✓ la protection complémentaire du circuit prise de courant à l'aide d'un dispositif différentiel à courant résiduel 30mA
+
+   STADE 1: Requête = 'réaliser'
+   Suggestions (top 5):
+     ✓ 1. la coordination entre les dispositifs de protection de surcharge et de court-cuicuit
+     ✓ 2. la sélectivité totale entre les différents circuits de sécurité
+     ✓ 3. la protection complémentaire du circuit prise de courant à l'aide d'un dispositif différentiel à courant résiduel 30ma
+     ✗ 4. le verrouillage des cellules maçonnées
+     ✗ 5. un verrouillage entre
+   Recall@5: 13.9%
+
+   STADE 2: Requête = 'réaliser la coordination'
+   Suggestions (top 5):
+     ✓ 1. la coordination entre les dispositifs de protection de surcharge et de court-cuicuit
+   Recall@5: 2.8%
+
+📝 Verbe: 'alimenter'
+   Compléments attendus (3 premiers):
+     ✓ en 12 volts de sécurité l'appareil d'éclairage situé en volume 1 de la piscine ou autres bassins
+     ✓ l'appareil portatif à main par une tension inférieur ou égale à 500V en CA ou 750V en CC lisse
+     ✓ en TBTS les appareils situés dans le volume 1 de la salle d'eau
+
+   STADE 1: Requête = 'alimenter'
+   Suggestions (top 5):
+     ✓ 1. en 12 volts de sécurité l'appareil d'éclairage situé en volume 1 de la piscine ou autres bassins
+     ✓ 2. l'appareil portatif à main par une tension inférieur ou égale à 500v en ca ou 750v en cc lisse
+     ✓ 3. en tbts les appareils situés dans le volume 1 de la salle d'eau
+     ✗ 4. un seul matériel en aval du transformateur de séparation
+     ✗ 5. suivant schéma tn-s (neutre et terre séparé) les circuits distribués dans le bâtiment
+   Recall@5: 41.2%
+
+   STADE 2: Requête = 'alimenter en 12'
+   Suggestions (top 5):
+     ✓ 1. en 12 volts de sécurité l'appareil d'éclairage situé en volume 1 de la piscine ou autres bassins
+     ✓ 2. en 12 volts de sécurité l'appareil d'éclairage situé en volume 1 de la salle d'eau
+   Recall@5: 11.8%
+
+================================================================================
+📈 ANALYSE COMPARATIVE
+================================================================================
+
+Comparaison Recall@5:
+  Après verbe seul:          16.2%
+  Après verbe + début:       3.8%
+
+⚠️  Le système ne s'améliore pas avec plus de contexte
+
+================================================================================
+💡 RECOMMANDATIONS
+================================================================================
+
+⚠️  PERFORMANCES À AMÉLIORER
+   • Vérifier que le VectorStore contient bien toutes les données
+   • Augmenter k_documents dans la recherche
+   • Réduire min_similarity pour plus de résultats
+   • Vérifier la qualité des embeddings
+
+🔧 OPTIMISATIONS SPÉCIFIQUES:
+   • Implémenter un cache pour verbes fréquents
+   • Pré-filtrer par préfixe avant recherche vectorielle
+   • Combiner filtrage texte + similarité sémantique
+   • Utiliser le contexte (localisation) pour affiner
+
+================================================================================

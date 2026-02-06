@@ -1,0 +1,1031 @@
+{
+  "metadata": {
+    "type": "dictionnaire_corrections",
+    "version": "1.0",
+    "date_generation": "2025-11-14",
+    "nombre_termes": 204,
+    "utilisation": "correction automatique des observations brutes"
+  },
+  "corrections": [
+    {
+      "terme_incorrect": "1.5mm2",
+      "terme_correct": "1,5 mm²",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "1.5mm²",
+      "terme_correct": "1,5 mm²",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "100 ohms",
+      "terme_correct": "100 Ω",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "100Ω",
+      "terme_correct": "100 Ω",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "10mm2",
+      "terme_correct": "10 mm²",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "12V",
+      "terme_correct": "12 V",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "16A",
+      "terme_correct": "16 A",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "16mm2",
+      "terme_correct": "16 mm²",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "2.5mm2",
+      "terme_correct": "2,5 mm²",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "2.5mm²",
+      "terme_correct": "2,5 mm²",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "20A",
+      "terme_correct": "20 A",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "230V",
+      "terme_correct": "230 V",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "230v",
+      "terme_correct": "230 V",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "24V",
+      "terme_correct": "24 V",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "300mA",
+      "terme_correct": "300 mA",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "30mA",
+      "terme_correct": "30 mA",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "32A",
+      "terme_correct": "32 A",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "400V",
+      "terme_correct": "400 V",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "40A",
+      "terme_correct": "40 A",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "4mm2",
+      "terme_correct": "4 mm²",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "500mA",
+      "terme_correct": "500 mA",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "63A",
+      "terme_correct": "63 A",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "6mm2",
+      "terme_correct": "6 mm²",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "abîmé",
+      "terme_correct": "endommagé",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "alim",
+      "terme_correct": "alimentation",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "ampère",
+      "terme_correct": "intensité",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "ampérage",
+      "terme_correct": "intensité nominale",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "ancien",
+      "terme_correct": "obsolète",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "aucun",
+      "terme_correct": "absence de",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "aucune",
+      "terme_correct": "absence de",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "BAES",
+      "terme_correct": "bloc autonome d'éclairage de sécurité",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "bornier",
+      "terme_correct": "bornier",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "borrnier",
+      "terme_correct": "bornier",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "bouton poussoir",
+      "terme_correct": "poussoir",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "boîte de dérivation",
+      "terme_correct": "boîte de connexion",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "boîte électrique",
+      "terme_correct": "tableau de répartition",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "BP",
+      "terme_correct": "bouton poussoir",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "cablage",
+      "terme_correct": "câblage",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "calibre",
+      "terme_correct": "courant assigné",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "cassé",
+      "terme_correct": "défectueux",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "cdt",
+      "terme_correct": "conducteur",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "chemin de câble",
+      "terme_correct": "chemin de câbles",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "circuit chauffage",
+      "terme_correct": "circuit de chauffage",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "circuit four",
+      "terme_correct": "circuit spécialisé four",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "circuit lave-linge",
+      "terme_correct": "circuit spécialisé lave-linge",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "circuit lave-vaisselle",
+      "terme_correct": "circuit spécialisé lave-vaisselle",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "circuit lumière",
+      "terme_correct": "circuit d'éclairage",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "circuit plaque",
+      "terme_correct": "circuit spécialisé plaque de cuisson",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "circuit prise",
+      "terme_correct": "circuit de prises de courant",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "conducteur",
+      "terme_correct": "conducteur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "conduteur",
+      "terme_correct": "conducteur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "court-circuit",
+      "terme_correct": "court-circuit",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "câblage",
+      "terme_correct": "câblage",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "câble 1.5mm²",
+      "terme_correct": "conducteur 1,5 mm²",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "câble 2.5mm²",
+      "terme_correct": "conducteur 2,5 mm²",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "câble 6mm²",
+      "terme_correct": "conducteur 6 mm²",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "câble de masse",
+      "terme_correct": "conducteur de protection",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "câble de terre",
+      "terme_correct": "conducteur de protection",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "câble électrique",
+      "terme_correct": "conducteur",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "dangereux",
+      "terme_correct": "présentant un danger",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "DC",
+      "terme_correct": "disjoncteur divisionnaire",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "DCL",
+      "terme_correct": "dispositif de connexion luminaire",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "DD",
+      "terme_correct": "disjoncteur différentiel",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "DDR",
+      "terme_correct": "dispositif différentiel résiduel",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "diferencial",
+      "terme_correct": "différentiel",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "diferentiel",
+      "terme_correct": "différentiel",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "diff",
+      "terme_correct": "différentiel",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "différentiel 30mA",
+      "terme_correct": "dispositif différentiel 30 mA",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "diférentiel",
+      "terme_correct": "différentiel",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "dijoncteur",
+      "terme_correct": "disjoncteur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "disj",
+      "terme_correct": "disjoncteur",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "disjoncteur",
+      "terme_correct": "disjoncteur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "disjoncteur 16A",
+      "terme_correct": "disjoncteur 16 A",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "disjoncteur 20A",
+      "terme_correct": "disjoncteur 20 A",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "disjoncteur 32A",
+      "terme_correct": "disjoncteur 32 A",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "disjoncteur de terre",
+      "terme_correct": "disjoncteur différentiel",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "disjoncteur différenciel",
+      "terme_correct": "disjoncteur différentiel",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "disjoncteur général",
+      "terme_correct": "dispositif de coupure d'urgence",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "disjoncteur principal",
+      "terme_correct": "disjoncteur de branchement",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "disjonteur",
+      "terme_correct": "disjoncteur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "domino",
+      "terme_correct": "borne de connexion",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "dominos",
+      "terme_correct": "bornes de connexion",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "défaillant",
+      "terme_correct": "défectueux",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "eclairage",
+      "terme_correct": "éclairage",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "elec",
+      "terme_correct": "électrique",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "electrique",
+      "terme_correct": "électrique",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "en panne",
+      "terme_correct": "hors service",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "equipotenciel",
+      "terme_correct": "équipotentiel",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "equipotentiel",
+      "terme_correct": "équipotentiel",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "ERP",
+      "terme_correct": "établissement recevant du public",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "ETEL",
+      "terme_correct": "espace technique électrique du logement",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "fil de terre",
+      "terme_correct": "conducteur de protection",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "fil électrique",
+      "terme_correct": "conducteur",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "fusible",
+      "terme_correct": "coupe-circuit à fusible",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "gaine électrique",
+      "terme_correct": "conduit",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "goulotte",
+      "terme_correct": "goulotte",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "GTL",
+      "terme_correct": "gaine technique logement",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "hors norme",
+      "terme_correct": "non conforme",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "ID",
+      "terme_correct": "interrupteur différentiel",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "IK07",
+      "terme_correct": "IK 07",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "IK08",
+      "terme_correct": "IK 08",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "il manque",
+      "terme_correct": "absence de",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "il n'y a pas de",
+      "terme_correct": "absence de",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "intensite",
+      "terme_correct": "intensité",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "intensité",
+      "terme_correct": "intensité",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "inter",
+      "terme_correct": "interrupteur",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "inter diff",
+      "terme_correct": "interrupteur différentiel",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "inter différentiel",
+      "terme_correct": "interrupteur différentiel",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "interrupteur double",
+      "terme_correct": "interrupteur bipolaire",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "interrupteur général",
+      "terme_correct": "dispositif de coupure d'urgence",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "interrupteur simple",
+      "terme_correct": "interrupteur unipolaire",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "interupteur",
+      "terme_correct": "interrupteur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "intérrupteur",
+      "terme_correct": "interrupteur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "IP44",
+      "terme_correct": "IP 44",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "IP65",
+      "terme_correct": "IP 65",
+      "type": "unités"
+    },
+    {
+      "terme_incorrect": "L",
+      "terme_correct": "conducteur de phase",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "la phase",
+      "terme_correct": "conducteur de phase",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "le neutre",
+      "terme_correct": "conducteur neutre",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "LEP",
+      "terme_correct": "liaison équipotentielle principale",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "LES",
+      "terme_correct": "liaison équipotentielle supplémentaire",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "mal fait",
+      "terme_correct": "réalisation non conforme",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "mal posé",
+      "terme_correct": "installation non conforme",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "manque de différentiel",
+      "terme_correct": "absence de protection différentielle",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "manque de protection",
+      "terme_correct": "absence de dispositif de protection",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "masse",
+      "terme_correct": "mise à la masse",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "multiprise",
+      "terme_correct": "bloc multiprises",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "N",
+      "terme_correct": "conducteur neutre",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "ne fonctionne pas",
+      "terme_correct": "non fonctionnel",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "neutre",
+      "terme_correct": "conducteur neutre",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "non conforme",
+      "terme_correct": "non-conformité",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "panneau électrique",
+      "terme_correct": "tableau de répartition",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "parafoudre",
+      "terme_correct": "parafoudre",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "parafoufre",
+      "terme_correct": "parafoudre",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "pas adapté",
+      "terme_correct": "inadapté",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "pas aux normes",
+      "terme_correct": "non conforme aux normes",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "pas conforme",
+      "terme_correct": "non-conformité",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "pas de différentiel",
+      "terme_correct": "absence de protection différentielle",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "pas de liaison équipotentielle",
+      "terme_correct": "absence de liaison équipotentielle",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "pas de protection",
+      "terme_correct": "absence de dispositif de protection",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "pas de repérage",
+      "terme_correct": "absence de repérage des circuits",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "pas de terre",
+      "terme_correct": "absence de mise à la terre",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "pb avec",
+      "terme_correct": "problème concernant",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "PC",
+      "terme_correct": "prise de courant",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "PE",
+      "terme_correct": "conducteur de protection",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "PH",
+      "terme_correct": "conducteur de phase",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "phase",
+      "terme_correct": "conducteur de phase",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "porte-fusible",
+      "terme_correct": "coupe-circuit à fusible",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "pr",
+      "terme_correct": "prise",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "pr.",
+      "terme_correct": "prise",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "prise 16A",
+      "terme_correct": "prise de courant 16 A",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "prise 32A",
+      "terme_correct": "prise de courant 32 A",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "prise avec terre",
+      "terme_correct": "prise de courant avec broche de terre",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "prise de courant",
+      "terme_correct": "socle de prise de courant",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "prise de terre",
+      "terme_correct": "prise de terre",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "prise RJ45",
+      "terme_correct": "prise de communication RJ45",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "prise sans terre",
+      "terme_correct": "prise de courant sans broche de terre",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "prise TV",
+      "terme_correct": "prise coaxiale",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "prise téléphone",
+      "terme_correct": "prise de communication",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "prise électrique",
+      "terme_correct": "prise de courant",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "problème de",
+      "terme_correct": "défaut de",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "protection 30mA",
+      "terme_correct": "dispositif différentiel 30 mA",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "protection de courant résiduel",
+      "terme_correct": "protection différentielle",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "protection de fuite",
+      "terme_correct": "protection différentielle",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "proteger",
+      "terme_correct": "protéger",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "protégé",
+      "terme_correct": "protégé",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "rallonge",
+      "terme_correct": "prolongateur",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "RDT",
+      "terme_correct": "résistance de terre",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "reperage",
+      "terme_correct": "repérage",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "resistance",
+      "terme_correct": "résistance",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "risque",
+      "terme_correct": "risque potentiel",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "réperage",
+      "terme_correct": "repérage",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "résistance",
+      "terme_correct": "résistance",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "sect",
+      "terme_correct": "section",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "section de câble",
+      "terme_correct": "section de conducteur",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "sectionneur",
+      "terme_correct": "sectionneur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "sectionnneur",
+      "terme_correct": "sectionneur",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "securite",
+      "terme_correct": "sécurité",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "souci avec",
+      "terme_correct": "anomalie concernant",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "sous-tableau",
+      "terme_correct": "tableau divisionnaire",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "sous-tension",
+      "terme_correct": "sous-tension",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "sur-tension",
+      "terme_correct": "surtension",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "sécurité",
+      "terme_correct": "sécurité",
+      "type": "orthographe"
+    },
+    {
+      "terme_incorrect": "tableau principal",
+      "terme_correct": "tableau de répartition principal",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "tableau secondaire",
+      "terme_correct": "tableau divisionnaire",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "tableau électrique",
+      "terme_correct": "tableau de répartition",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "tb",
+      "terme_correct": "tableau",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "TD",
+      "terme_correct": "tableau divisionnaire",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "terre",
+      "terme_correct": "mise à la terre",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "TGBT",
+      "terme_correct": "tableau général basse tension",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "trop gros",
+      "terme_correct": "surdimensionné",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "trop petit",
+      "terme_correct": "sous-dimensionné",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "usé",
+      "terme_correct": "dégradé",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "V&V",
+      "terme_correct": "va-et-vient",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "va-et-vient",
+      "terme_correct": "interrupteur va-et-vient",
+      "type": "standardisation"
+    },
+    {
+      "terme_incorrect": "vieux",
+      "terme_correct": "ancien",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "volt",
+      "terme_correct": "tension",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "voltage",
+      "terme_correct": "tension nominale",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "vétuste",
+      "terme_correct": "obsolète",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "wago",
+      "terme_correct": "borne automatique",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "watt",
+      "terme_correct": "puissance",
+      "type": "technique"
+    },
+    {
+      "terme_incorrect": "y'a pas de",
+      "terme_correct": "absence de",
+      "type": "formulation"
+    },
+    {
+      "terme_incorrect": "élec",
+      "terme_correct": "électrique",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "élect",
+      "terme_correct": "électrique",
+      "type": "abréviations"
+    },
+    {
+      "terme_incorrect": "élèctrique",
+      "terme_correct": "électrique",
+      "type": "orthographe"
+    }
+  ]
+}

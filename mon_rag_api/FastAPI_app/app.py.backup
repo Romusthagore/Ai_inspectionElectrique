@@ -1,0 +1,133 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
+import logging
+import os
+from dotenv import load_dotenv
+import traceback
+
+# Charge les variables d'environnement
+load_dotenv()
+
+# Configuration logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Variables globales
+suggestion_engine = None
+vector_store = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Gestion du cycle de vie de l'application"""
+    global suggestion_engine, vector_store
+    
+    # Startup
+    logger.info("🚀 Démarrage des services RAG...")
+    
+    try:
+        # Import ici pour éviter les imports circulaires
+        from core.vector_store import get_vector_store
+        from core.groq_config import get_llm
+        from core.suggestion_engine import SuggestionEngine
+        
+        # 1. VectorStore
+        vector_store = get_vector_store()
+        logger.info(f"✅ VectorStore: {vector_store.index.ntotal} vecteurs")
+        
+        # 2. LLM
+        llm = get_llm()
+        logger.info(f"✅ LLM chargé: {llm.model_name}")
+        
+        # 3. SuggestionEngine
+        suggestion_engine = SuggestionEngine(
+            vectorstore=vector_store,
+            llm=llm,
+            k_documents=30,
+            min_similarity=0.65
+        )
+        logger.info("✅ SuggestionEngine initialisé")
+        
+    except Exception as e:
+        logger.error(f"❌ Erreur initialisation: {e}")
+        traceback.print_exc()
+    
+    yield
+    
+    # Shutdown
+    logger.info("👋 Arrêt des services RAG...")
+
+# Création de l'app FastAPI - CETTE LIGNE DOIT S'EXÉCUTER !
+app = FastAPI(
+    title="RAG API - Normes Électriques",
+    description="API d'autocomplétion pour normes NFC 15-100",
+    version="1.0.0",
+    lifespan=lifespan
+)
+
+# Middleware CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Routes de base
+@app.get("/")
+def root():
+    return {
+        "message": "API RAG Normes Électriques NFC 15-100",
+        "version": "1.0.0",
+        "endpoints": {
+            "autocomplete": "POST /api/v1/autocomplete",
+            "health": "GET /health",
+            "docs": "/docs"
+        }
+    }
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "engine_ready": suggestion_engine is not None,
+        "vector_store_ready": vector_store is not None,
+        "groq_api_key": bool(os.getenv("GROQ_API_KEY"))
+    }
+
+# Inclure les routes API avec gestion d'erreur APRÈS la création de app
+try:
+    from api.endpoints import router as api_router
+    
+    # CORRECTION : Le router a DÉJÀ prefix="/api/v1" dans endpoints.py
+    # Donc on l'inclut SANS préfixe supplémentaire
+    app.include_router(api_router)
+    
+    logger.info("✅ Routes API chargées:")
+    logger.info("   - POST /api/v1/autocomplete")
+    logger.info("   - GET  /api/v1/health")
+    logger.info("   - POST /api/v1/search")
+    logger.info("   - POST /api/v1/reformulate")
+    logger.info("   - POST /api/v1/extract_norme")
+    
+except ImportError as e:
+    logger.warning(f"⚠️ Module api.endpoints non trouvé: {e}")
+    logger.warning("L'API fonctionne sans les routes /api/v1/")
+except Exception as e:
+    logger.error(f"❌ Erreur chargement routes API: {e}")
+    traceback.print_exc()
+
+# Cette ligne confirme que app existe
+logger.info(f"✅ Application FastAPI créée: {app.title}")
+
+# Routes de test directes (à retirer après vérification)
+@app.get("/api/v1/test-direct")
+def test_direct():
+    """Route de test direct pour vérifier le préfixe /api/v1"""
+    return {"message": "✅ Route de test directe fonctionne", "path": "/api/v1/test-direct"}
+
+@app.get("/test-direct2")
+def test_direct2():
+    """Route de test sans préfixe"""
+    return {"message": "✅ Route sans préfixe fonctionne", "path": "/test-direct2"}

@@ -1,0 +1,75 @@
+================================================================================
+📊 RAPPORT D'ÉVALUATION - SYSTÈME D'AUTOCOMPLÉTION RAG
+================================================================================
+
+🎯 MÉTRIQUES GLOBALES
+--------------------------------------------------
+Recall@1:     2.3%
+Precision@1:  80.0%
+Recall@3:     3.1%
+Precision@3:  66.7%
+Recall@5:     5.8%
+Precision@5:  68.0%
+Recall@10:     5.8%
+Precision@10:  34.0%
+MRR:            0.026
+Coverage@20:    5.8%
+Similarité sém.: 0.445
+
+📈 PERFORMANCE PAR TYPE DE VERBE
+--------------------------------------------------
+
+⚠️  VERBES AVEC FAIBLE PERFORMANCE (recall@5 < 10%):
+  'installer': 1.6%
+  'remplacer': 4.3%
+  'alimenter': 5.9%
+  'réaliser': 8.3%
+  'protéger': 8.7%
+
+🔍 EXEMPLES DÉTAILLÉS
+--------------------------------------------------
+
+Verbe: 'remplacer'
+  Attendus: 5/115 compléments
+    - le luminaire par un modèle d'indice de protection IP 6X (risque d'accumulation de poussière)
+    - le transformateur IT médical par un modèle conforme à la norme NF EN 61558-2-15
+    - les tubes "IRO" par des conduits MRL relier au conducteur de protection
+  Suggestions RAG: 5 résultats
+    1. Remplacer le matériel détérioré
+    2. Remplacer le  conduit
+    3. Remplacer par un modèle de sécurité le transformateur
+  Métriques: Recall@5=4.3%, Precision@5=100.0%
+
+Verbe: 'installer'
+  Attendus: 5/64 compléments
+    - un transformateur pour l'enseigne haute tension conforme à la norme EN 61050
+    - un moyen de chauffage dans le local
+    - en dehors du volume 2 de la salle d'eau le matériel suivant
+  Suggestions RAG: 5 résultats
+    1. Réaliser une installation fixe
+    2. Réaliser une installation fixe
+    3. Réaliser une installation fixe
+  Métriques: Recall@5=1.6%, Precision@5=20.0%
+
+Verbe: 'protéger'
+  Attendus: 5/46 compléments
+    - contre les surintensités en amont du local, la canalisation
+    - mécaniquement la canalisation enterré
+    - contre les défauts à la terre par un relais homopolaire, le circuit
+  Suggestions RAG: 5 résultats
+    1. Protéger l'installation TBTF contre les contacts  indirects
+    2. Protéger mécaniquement les conducteurs
+    3. Protéger mécaniquement les conducteurs
+  Métriques: Recall@5=8.7%, Precision@5=100.0%
+
+💡 RECOMMANDATIONS
+--------------------------------------------------
+1. 📈 AMÉLIORER LE RECALL (trop bas):
+   • Augmenter le nombre de suggestions retournées
+   • Améliorer la diversité des suggestions
+   • Enrichir la base de connaissances du VectorStore
+
+3. 🔧 POUR L'AUTOCOMPLÉTION:
+   • Grouper les verbes similaires (synonymes)
+   • Proposer des compléments génériques pour les verbes peu fréquents
+   • Utiliser le contexte de saisie pour filtrer dynamiquement

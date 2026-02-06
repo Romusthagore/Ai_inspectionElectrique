@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "type": "observations_types_electriques",
+    "version": "1.0",
+    "date_generation": "2025-11-14",
+    "nombre_categories": 6,
+    "source": "expertise terrain + documents techniques"
+  },
+  "categories": [
+    {
+      "categorie": "Protection différentielle",
+      "code": "PD",
+      "description": "Problèmes liés aux dispositifs différentiels protégeant les personnes contre les contacts indirects.",
+      "observations_types": [
+        {
+          "id": "PD_01",
+          "observation_brute": "Absence de dispositif différentiel 30mA au niveau du tableau.",
+          "observation_corrigee": "Absence de protection différentielle 30 mA en amont des circuits concernés.",
+          "enrichissement": "Une protection différentielle 30 mA est obligatoire pour assurer la protection des personnes contre les contacts indirects.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 415.1",
+            "NF C 15-100 § 411.3.2"
+          ]
+        },
+        {
+          "id": "PD_02",
+          "observation_brute": "Différentiel de sensibilité inadaptée.",
+          "observation_corrigee": "Dispositif différentiel avec sensibilité inadaptée au type de circuit protégé.",
+          "enrichissement": "La sensibilité du dispositif différentiel doit être adaptée à l'utilisation : 30 mA pour la protection des personnes, 300 mA ou 500 mA pour la protection des biens.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 531.2",
+            "NF C 15-100 § 411.4.5"
+          ]
+        },
+        {
+          "id": "PD_03",
+          "observation_brute": "Pas de test du différentiel.",
+          "observation_corrigee": "Absence de vérification fonctionnelle périodique du dispositif différentiel.",
+          "enrichissement": "Le test mensuel du bouton de test des interrupteurs différentiels est recommandé pour vérifier leur bon fonctionnement.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 531.2.2",
+            "Guide UTE C 15-900"
+          ]
+        }
+      ]
+    },
+    {
+      "categorie": "Mise à la terre",
+      "code": "MT",
+      "description": "Défauts liés à la continuité et la conformité des liaisons à la terre.",
+      "observations_types": [
+        {
+          "id": "MT_01",
+          "observation_brute": "Absence de liaison équipotentielle.",
+          "observation_corrigee": "Liaison équipotentielle absente ou non conforme.",
+          "enrichissement": "Les liaisons équipotentielles réduisent les risques de chocs électriques en équilibrant les potentiels entre les masses métalliques.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 544",
+            "NF C 15-100 § 701.413.1.2"
+          ]
+        },
+        {
+          "id": "MT_02",
+          "observation_brute": "Prise de terre non mesurée.",
+          "observation_corrigee": "Valeur de résistance de la prise de terre non vérifiée ou hors limites acceptables.",
+          "enrichissement": "La résistance de terre doit être mesurée et ne pas dépasser 100 Ω pour une protection par dispositif différentiel 30 mA.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 542.2",
+            "NF C 15-100 § 411.5.3"
+          ]
+        },
+        {
+          "id": "MT_03",
+          "observation_brute": "Conducteur de terre sous-dimensionné.",
+          "observation_corrigee": "Section du conducteur de protection insuffisante par rapport aux conducteurs actifs.",
+          "enrichissement": "La section minimale du conducteur de protection doit être déterminée selon le tableau 54G de la NF C 15-100.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 543.1",
+            "NF C 15-100 Tableau 54G"
+          ]
+        }
+      ]
+    },
+    {
+      "categorie": "Protection contre les surintensités",
+      "code": "PC",
+      "description": "Défauts de dimensionnement ou d'installation des dispositifs de protection contre les surcharges et courts-circuits.",
+      "observations_types": [
+        {
+          "id": "PC_01",
+          "observation_brute": "Disjoncteur surdimensionné pour la section de câble.",
+          "observation_corrigee": "Calibre du dispositif de protection supérieur à la capacité admissible du conducteur.",
+          "enrichissement": "Le calibre du dispositif de protection doit être adapté à la section des conducteurs pour éviter l'échauffement des câbles.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 433.1",
+            "NF C 15-100 Tableaux 52C à 52H"
+          ]
+        },
+        {
+          "id": "PC_02",
+          "observation_brute": "Absence de protection au départ du circuit.",
+          "observation_corrigee": "Circuit dépourvu de dispositif de protection contre les surintensités à son origine.",
+          "enrichissement": "Chaque circuit doit être protégé contre les surcharges et courts-circuits dès son point de départ.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 433.2",
+            "NF C 15-100 § 473.3.2"
+          ]
+        },
+        {
+          "id": "PC_03",
+          "observation_brute": "Disjoncteur de mauvais type (courbe C au lieu de courbe D).",
+          "observation_corrigee": "Type de courbe de déclenchement inadapté à l'application (moteur, chauffage, etc.).",
+          "enrichissement": "Les courbes B, C et D correspondent à différents courants de déclenchement magnétique adaptés aux charges.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 533.2",
+            "Guide UTE C 15-103"
+          ]
+        }
+      ]
+    },
+    {
+      "categorie": "Circuits et câblage",
+      "code": "CI",
+      "description": "Problèmes liés aux conducteurs, sections, cheminements et connexions.",
+      "observations_types": [
+        {
+          "id": "CI_01",
+          "observation_brute": "Section de câble insuffisante.",
+          "observation_corrigee": "Section des conducteurs sous-dimensionnée par rapport à la charge et à la longueur du circuit.",
+          "enrichissement": "La section doit être déterminée en fonction de l'intensité maximale admissible, de la chute de tension et de la longueur.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 525",
+            "NF C 15-100 § 523.1"
+          ]
+        },
+        {
+          "id": "CI_02",
+          "observation_brute": "Câbles non protégés mécaniquement.",
+          "observation_corrigee": "Conducteurs apparents non protégés contre les dommages mécaniques.",
+          "enrichissement": "Les câbles doivent être posés dans des conduits, goulottes ou chemins de câbles adaptés selon l'environnement.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 522.6",
+            "NF C 15-100 § 521.10.1"
+          ]
+        },
+        {
+          "id": "CI_03",
+          "observation_brute": "Connexions par dominos dans les combles.",
+          "observation_corrigee": "Utilisation de connexions non autorisées en dehors des boîtes de dérivation appropriées.",
+          "enrichissement": "Les connexions doivent être réalisées dans des boîtes fermées et accessibles pour permettre la vérification.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 526.3",
+            "NF C 15-100 § 526.5"
+          ]
+        },
+        {
+          "id": "CI_04",
+          "observation_brute": "Circuit de 32A en section 1.5mm².",
+          "observation_corrigee": "Inadéquation entre le calibre de protection et la section du conducteur.",
+          "enrichissement": "Un circuit protégé par 32A nécessite une section minimale de 6 mm² en cuivre pour les installations domestiques.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 433.1",
+            "NF C 15-100 Tableau 52C"
+          ]
+        }
+      ]
+    },
+    {
+      "categorie": "Appareillage",
+      "code": "AP",
+      "description": "Défauts sur les appareils électriques, prises, interrupteurs et tableaux.",
+      "observations_types": [
+        {
+          "id": "AP_01",
+          "observation_brute": "Prises de courant sans terre.",
+          "observation_corrigee": "Socles de prises de courant dépourvus de contact de protection (terre).",
+          "enrichissement": "Toutes les prises doivent comporter un contact de terre relié au circuit de protection pour la sécurité des personnes.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 553.1.5",
+            "NF C 15-100 § 411.3.2"
+          ]
+        },
+        {
+          "id": "AP_02",
+          "observation_brute": "Tableau électrique vétuste sans protection.",
+          "observation_corrigee": "Tableau de répartition obsolète non conforme aux exigences actuelles de sécurité.",
+          "enrichissement": "Les tableaux doivent comporter des protections différentielles, des dispositifs de coupure d'urgence et un repérage clair.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 771",
+            "NF C 15-100 § 530"
+          ]
+        },
+        {
+          "id": "AP_03",
+          "observation_brute": "Prises dans la salle de bain trop proches de la baignoire.",
+          "observation_corrigee": "Appareillage électrique installé en volume de salle d'eau non autorisé.",
+          "enrichissement": "Les volumes de sécurité en salles d'eau limitent l'installation d'appareillages électriques selon leur IPX.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 701.512.3",
+            "NF C 15-100 Figure 701"
+          ]
+        },
+        {
+          "id": "AP_04",
+          "observation_brute": "Interrupteur cassé avec fils apparents.",
+          "observation_corrigee": "Appareillage endommagé présentant des parties actives accessibles.",
+          "enrichissement": "Les appareillages doivent être intacts et ne présenter aucune partie active accessible susceptible de créer un contact direct.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 416.2",
+            "NF C 15-100 § 512.2"
+          ]
+        }
+      ]
+    },
+    {
+      "categorie": "Sécurité et environnement",
+      "code": "SE",
+      "description": "Non-conformités liées à la sécurité, l'accessibilité et les conditions d'installation.",
+      "observations_types": [
+        {
+          "id": "SE_01",
+          "observation_brute": "Tableau électrique non accessible.",
+          "observation_corrigee": "Tableau de répartition difficilement accessible ou obstrué.",
+          "enrichissement": "Le tableau électrique doit être facilement accessible pour permettre les manœuvres et interventions d'urgence.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 771.513.2",
+            "NF C 15-100 § 513.1"
+          ]
+        },
+        {
+          "id": "SE_02",
+          "observation_brute": "Pas de schéma électrique au tableau.",
+          "observation_corrigee": "Absence de repérage et de schéma des circuits au niveau du tableau de répartition.",
+          "enrichissement": "Un repérage des circuits et un schéma de l'installation doivent être présents pour faciliter les interventions.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 514.5.1",
+            "NF C 15-100 § 771.514"
+          ]
+        },
+        {
+          "id": "SE_03",
+          "observation_brute": "Installation électrique en milieu humide sans protection IP adaptée.",
+          "observation_corrigee": "Matériel électrique ne possédant pas l'indice de protection adapté à l'environnement humide.",
+          "enrichissement": "En milieu humide, le matériel doit avoir au minimum un indice IPX4, voire IPX5 selon les cas.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 512.2",
+            "NF C 15-100 § 701.512.2"
+          ]
+        },
+        {
+          "id": "SE_04",
+          "observation_brute": "Risque incendie : câble endommagé près d'une source de chaleur.",
+          "observation_corrigee": "Conducteur présentant des dommages à proximité d'équipements thermiques.",
+          "enrichissement": "Les câbles doivent être protégés contre les agressions thermiques et être adaptés aux températures ambiantes.",
+          "suggestions_normatives": [
+            "NF C 15-100 § 522.1",
+            "NF C 15-100 § 527.1"
+          ]
+        }
+      ]
+    }
+  ]
+}

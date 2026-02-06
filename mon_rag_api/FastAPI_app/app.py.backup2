@@ -1,0 +1,259 @@
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
+from typing import List
+import logging
+import os
+from dotenv import load_dotenv
+import traceback
+from pydantic import BaseModel, Field
+
+# Charge les variables d'environnement
+load_dotenv()
+
+# Configuration logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Variables globales
+suggestion_engine = None
+vector_store = None
+
+# Modèles Pydantic
+class AutocompleteRequest(BaseModel):
+    query: str = Field(..., description="Texte à compléter")
+    max_suggestions: int = Field(10, ge=1, le=50)
+
+class AutocompleteResponse(BaseModel):
+    query: str
+    suggestions: List[str]
+    count: int
+
+class SearchRequest(BaseModel):
+    query: str = Field(..., description="Question ou recherche")
+    top_k: int = Field(5, ge=1, le=20)
+
+class SearchResult(BaseModel):
+    content: str
+    metadata: dict
+    score: float
+
+class SearchResponse(BaseModel):
+    query: str
+    results: List[SearchResult]
+    count: int
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Gestion du cycle de vie de l'application"""
+    global suggestion_engine, vector_store
+    
+    # Startup
+    logger.info("🚀 Démarrage des services RAG...")
+    
+    try:
+        # Import ici pour éviter les imports circulaires
+        from core.vector_store import get_vector_store
+        from core.groq_config import get_llm
+        from core.suggestion_engine import SuggestionEngine
+        
+        # 1. VectorStore
+        vector_store = get_vector_store()
+        logger.info(f"✅ VectorStore: {vector_store.index.ntotal} vecteurs")
+        
+        # 2. LLM
+        llm = get_llm()
+        logger.info(f"✅ LLM chargé: {llm.model_name}")
+        
+        # 3. SuggestionEngine
+        suggestion_engine = SuggestionEngine(
+            vectorstore=vector_store,
+            llm=llm,
+            k_documents=30,
+            min_similarity=0.65
+        )
+        logger.info("✅ SuggestionEngine initialisé")
+        
+    except Exception as e:
+        logger.error(f"❌ Erreur initialisation: {e}")
+        traceback.print_exc()
+    
+    yield
+    
+    # Shutdown
+    logger.info("👋 Arrêt des services RAG...")
+
+# Création de l'app FastAPI
+app = FastAPI(
+    title="RAG API - Normes Électriques",
+    description="API d'autocomplétion pour normes NFC 15-100",
+    version="1.0.0",
+    lifespan=lifespan
+)
+
+# Middleware CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ============================================================================
+# ROUTES PRINCIPALES
+# ============================================================================
+
+@app.get("/")
+def root():
+    return {
+        "message": "API RAG Normes Électriques NFC 15-100",
+        "version": "1.0.0",
+        "endpoints": {
+            "autocomplete": "POST /api/v1/autocomplete",
+            "search": "POST /api/v1/search",
+            "health": "GET /health",
+            "api_health": "GET /api/v1/health",
+            "docs": "/docs"
+        }
+    }
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "engine_ready": suggestion_engine is not None,
+        "vector_store_ready": vector_store is not None,
+        "groq_api_key": bool(os.getenv("GROQ_API_KEY"))
+    }
+
+# ============================================================================
+# ROUTES API v1
+# ============================================================================
+
+@app.post("/api/v1/autocomplete", response_model=AutocompleteResponse)
+async def api_autocomplete(request: AutocompleteRequest):
+    """Endpoint d'autocomplétion intelligent"""
+    try:
+        logger.info(f"🔍 Autocomplete API: '{request.query}'")
+        
+        if suggestion_engine is None:
+            raise HTTPException(status_code=503, detail="SuggestionEngine non initialisé")
+        
+        if len(request.query.strip()) < 2:
+            return AutocompleteResponse(
+                query=request.query,
+                suggestions=["Tapez au moins 2 caractères..."],
+                count=1
+            )
+        
+        # Utiliser le vrai moteur de suggestions
+        suggestions = suggestion_engine.get_suggestions(
+            user_input=request.query,
+            max_suggestions=request.max_suggestions
+        )
+        
+        # Formater les résultats
+        formatted_suggestions = []
+        for sugg in suggestions:
+            if isinstance(sugg, str):
+                formatted_suggestions.append(sugg)
+            elif isinstance(sugg, dict):
+                # Extraire le texte selon la structure de votre moteur
+                text = sugg.get("text", sugg.get("suggestion", str(sugg)))
+                formatted_suggestions.append(text)
+            else:
+                formatted_suggestions.append(str(sugg))
+        
+        logger.info(f"✅ {len(formatted_suggestions)} suggestions trouvées")
+        
+        return AutocompleteResponse(
+            query=request.query,
+            suggestions=formatted_suggestions[:request.max_suggestions],
+            count=len(formatted_suggestions[:request.max_suggestions])
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"❌ Erreur autocomplete: {e}")
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail="Erreur interne du serveur")
+
+@app.post("/api/v1/search", response_model=SearchResponse)
+async def api_search(request: SearchRequest):
+    """Recherche sémantique dans les documents"""
+    try:
+        logger.info(f"🔍 Search API: '{request.query}'")
+        
+        if vector_store is None:
+            raise HTTPException(status_code=503, detail="VectorStore non initialisé")
+        
+        # Recherche réelle
+        results = vector_store.search(
+            query=request.query,
+            top_k=request.top_k
+        )
+        
+        # Formater les résultats pour le modèle
+        formatted_results = []
+        for i, result in enumerate(results):
+            if isinstance(result, dict):
+                formatted_results.append(SearchResult(
+                    content=result.get("content", str(result)),
+                    metadata=result.get("metadata", {}),
+                    score=result.get("score", 0.0)
+                ))
+            else:
+                formatted_results.append(SearchResult(
+                    content=str(result),
+                    metadata={"source": "vector_store"},
+                    score=0.9 - (i * 0.1)
+                ))
+        
+        logger.info(f"✅ {len(formatted_results)} résultats trouvés")
+        
+        return SearchResponse(
+            query=request.query,
+            results=formatted_results,
+            count=len(formatted_results)
+        )
+        
+    except Exception as e:
+        logger.error(f"❌ Erreur recherche: {e}")
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/v1/health")
+async def api_v1_health():
+    """Santé de l'API v1"""
+    return {
+        "status": "healthy",
+        "suggestion_engine": suggestion_engine is not None,
+        "vector_store": vector_store is not None,
+        "services": {
+            "suggestion_engine_ready": suggestion_engine is not None,
+            "vector_store_ready": vector_store is not None,
+            "vector_count": vector_store.index.ntotal if vector_store else 0
+        }
+    }
+
+@app.get("/api/v1/")
+async def api_v1_root():
+    """Root de l'API v1"""
+    return {
+        "api": "RAG Normes Électriques v1",
+        "endpoints": [
+            {"method": "POST", "path": "/api/v1/autocomplete", "desc": "Autocomplétion intelligente"},
+            {"method": "POST", "path": "/api/v1/search", "desc": "Recherche sémantique"},
+            {"method": "GET", "path": "/api/v1/health", "desc": "Santé de l'API"},
+            {"method": "GET", "path": "/api/v1/", "desc": "Cette page"}
+        ]
+    }
+
+# Route de test
+@app.get("/api/v1/test")
+async def api_test():
+    return {"message": "✅ API v1 fonctionne!", "test": "ok"}
+
+logger.info(f"✅ Application FastAPI créée: RAG API - Normes Électriques")

@@ -1,0 +1,11 @@
+"*.env" 
+"**/groq_config.py" 
+"**/.env" 
+.env 
+**/.env 
+**/__pycache__/ 
+*.pyc 
+.env 
+**/.env 
+**/__pycache__/ 
+*.pyc 

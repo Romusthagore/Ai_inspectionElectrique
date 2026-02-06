@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "type": "observations_validees",
+    "version": "1.0",
+    "date_generation": "2025-11-14",
+    "description": "Structure standardisée pour accueillir les observations validées après traitement"
+  },
+  "observations": [
+    {
+      "id": "OBS-LIVRE BLEU - SECURITE INCENDIE.pdf-001",
+      "type": "document",
+      "description": "Fichier LIVRE BLEU - SECURITE INCENDIE.pdf importé",
+      "date_observation": "2025-11-14",
+      "statut": "validée",
+      "date_validation": "2025-11-14",
+      "source": "LIVRE BLEU - SECURITE INCENDIE.pdf",
+      "notes": "Fichier original: LIVRE BLEU - SECURITE INCENDIE.pdf"
+    },
+    {
+      "id": "OBS-NF C15-100-1 Installations électriques à basse tension Partie 1  exigences générales_août 2024.pdf-001",
+      "type": "document",
+      "description": "Fichier NF C15-100-1 Installations électriques à basse tension Partie 1  exigences générales_août 2024.pdf importé",
+      "date_observation": "2025-11-14",
+      "statut": "validée",
+      "date_validation": "2025-11-14",
+      "source": "NF C15-100-1 Installations électriques à basse tension Partie 1  exigences générales_août 2024.pdf",
+      "notes": "Fichier original: NF C15-100-1 Installations électriques à basse tension Partie 1  exigences générales_août 2024.pdf"
+    }
+  ]
+}

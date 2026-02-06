@@ -1,0 +1,496 @@
+{
+  "metadata": {
+    "type": "variantes_termes",
+    "version": "1.0",
+    "date_generation": "2025-11-14",
+    "nombre_groupes": 38,
+    "nombre_variantes": 256,
+    "utilisation": "normalisation et reconnaissance de variantes terminologiques"
+  },
+  "termes": [
+    {
+      "groupe": "interrupteur_differentiel",
+      "variantes": [
+        "ID",
+        "id",
+        "diff",
+        "inter diff",
+        "inter différentiel",
+        "interrupteur diff",
+        "interrupteur différentiel",
+        "inter. diff.",
+        "inter. différentiel",
+        "dispositif différentiel",
+        "DD sans protection surintensité"
+      ],
+      "terme_normalise": "interrupteur différentiel"
+    },
+    {
+      "groupe": "disjoncteur_differentiel",
+      "variantes": [
+        "DD",
+        "disj diff",
+        "disjoncteur diff",
+        "disjoncteur différentiel",
+        "disj. différentiel",
+        "disjoncteur de terre",
+        "disjoncteur différenciel"
+      ],
+      "terme_normalise": "disjoncteur différentiel"
+    },
+    {
+      "groupe": "dispositif_differentiel_residuel",
+      "variantes": [
+        "DDR",
+        "dispositif différentiel résiduel",
+        "protection différentielle",
+        "différentiel résiduel",
+        "DR"
+      ],
+      "terme_normalise": "dispositif différentiel résiduel"
+    },
+    {
+      "groupe": "prise_2p_t",
+      "variantes": [
+        "prise 2P+T",
+        "2p+t",
+        "2P+T",
+        "prise terre",
+        "prise 2P T",
+        "prise avec terre",
+        "prise + terre",
+        "prise 16A 2P+T",
+        "socle 2P+T"
+      ],
+      "terme_normalise": "prise de courant 2P+T"
+    },
+    {
+      "groupe": "prise_sans_terre",
+      "variantes": [
+        "prise 2P",
+        "2p",
+        "2P",
+        "prise sans terre",
+        "prise 2 pôles",
+        "prise bipolaire"
+      ],
+      "terme_normalise": "prise de courant 2P"
+    },
+    {
+      "groupe": "disjoncteur",
+      "variantes": [
+        "disj",
+        "disjoncteur",
+        "DJ",
+        "disj.",
+        "disjonteur",
+        "disjoncteur divisionnaire",
+        "disjoncteur modulaire"
+      ],
+      "terme_normalise": "disjoncteur"
+    },
+    {
+      "groupe": "tableau_repartition",
+      "variantes": [
+        "tableau électrique",
+        "tableau",
+        "TB",
+        "panneau électrique",
+        "coffret électrique",
+        "tableau de répartition",
+        "tableau principal",
+        "tableau général"
+      ],
+      "terme_normalise": "tableau de répartition"
+    },
+    {
+      "groupe": "tableau_divisionnaire",
+      "variantes": [
+        "TD",
+        "tableau divisionnaire",
+        "sous-tableau",
+        "tableau secondaire",
+        "tableau annexe",
+        "coffret divisionnaire"
+      ],
+      "terme_normalise": "tableau divisionnaire"
+    },
+    {
+      "groupe": "conducteur_protection",
+      "variantes": [
+        "PE",
+        "fil de terre",
+        "câble de terre",
+        "conducteur de protection",
+        "terre",
+        "conducteur PE",
+        "fil vert-jaune",
+        "câble vert/jaune"
+      ],
+      "terme_normalise": "conducteur de protection (PE)"
+    },
+    {
+      "groupe": "conducteur_neutre",
+      "variantes": [
+        "N",
+        "neutre",
+        "le neutre",
+        "conducteur neutre",
+        "fil neutre",
+        "câble neutre",
+        "fil bleu"
+      ],
+      "terme_normalise": "conducteur neutre (N)"
+    },
+    {
+      "groupe": "conducteur_phase",
+      "variantes": [
+        "L",
+        "phase",
+        "la phase",
+        "conducteur de phase",
+        "fil de phase",
+        "conducteur actif",
+        "L1",
+        "L2",
+        "L3",
+        "fil rouge",
+        "fil noir",
+        "fil marron"
+      ],
+      "terme_normalise": "conducteur de phase (L)"
+    },
+    {
+      "groupe": "liaison_equipotentielle",
+      "variantes": [
+        "LEP",
+        "LES",
+        "liaison équipotentielle",
+        "liaison équipotentielle principale",
+        "liaison équipotentielle supplémentaire",
+        "équipotentialité",
+        "mise à la terre équipotentielle"
+      ],
+      "terme_normalise": "liaison équipotentielle"
+    },
+    {
+      "groupe": "prise_terre",
+      "variantes": [
+        "prise de terre",
+        "terre",
+        "mise à la terre",
+        "MAT",
+        "circuit de terre",
+        "piquet de terre",
+        "barrette de terre",
+        "borne de terre"
+      ],
+      "terme_normalise": "prise de terre"
+    },
+    {
+      "groupe": "resistance_terre",
+      "variantes": [
+        "RDT",
+        "résistance de terre",
+        "résistance de la prise de terre",
+        "valeur de terre",
+        "mesure de terre",
+        "ohm terre"
+      ],
+      "terme_normalise": "résistance de terre"
+    },
+    {
+      "groupe": "section_conducteur",
+      "variantes": [
+        "section",
+        "section de câble",
+        "section du fil",
+        "diamètre",
+        "grosseur du câble",
+        "calibre câble"
+      ],
+      "terme_normalise": "section de conducteur"
+    },
+    {
+      "groupe": "section_1_5mm2",
+      "variantes": [
+        "1.5mm²",
+        "1.5mm2",
+        "1,5mm²",
+        "1,5mm2",
+        "1.5",
+        "1,5",
+        "section 1.5"
+      ],
+      "terme_normalise": "1,5 mm²"
+    },
+    {
+      "groupe": "section_2_5mm2",
+      "variantes": [
+        "2.5mm²",
+        "2.5mm2",
+        "2,5mm²",
+        "2,5mm2",
+        "2.5",
+        "2,5",
+        "section 2.5"
+      ],
+      "terme_normalise": "2,5 mm²"
+    },
+    {
+      "groupe": "section_6mm2",
+      "variantes": [
+        "6mm²",
+        "6mm2",
+        "6",
+        "section 6"
+      ],
+      "terme_normalise": "6 mm²"
+    },
+    {
+      "groupe": "calibre_16a",
+      "variantes": [
+        "16A",
+        "16a",
+        "16 A",
+        "16 ampères",
+        "calibre 16",
+        "disj 16A",
+        "protection 16A"
+      ],
+      "terme_normalise": "16 A"
+    },
+    {
+      "groupe": "calibre_20a",
+      "variantes": [
+        "20A",
+        "20a",
+        "20 A",
+        "20 ampères",
+        "calibre 20",
+        "disj 20A",
+        "protection 20A"
+      ],
+      "terme_normalise": "20 A"
+    },
+    {
+      "groupe": "calibre_32a",
+      "variantes": [
+        "32A",
+        "32a",
+        "32 A",
+        "32 ampères",
+        "calibre 32",
+        "disj 32A",
+        "protection 32A"
+      ],
+      "terme_normalise": "32 A"
+    },
+    {
+      "groupe": "sensibilite_30ma",
+      "variantes": [
+        "30mA",
+        "30ma",
+        "30 mA",
+        "30 milliampères",
+        "sensibilité 30",
+        "diff 30mA",
+        "protection 30mA"
+      ],
+      "terme_normalise": "30 mA"
+    },
+    {
+      "groupe": "sensibilite_300ma",
+      "variantes": [
+        "300mA",
+        "300ma",
+        "300 mA",
+        "300 milliampères",
+        "sensibilité 300",
+        "diff 300mA",
+        "0,3A"
+      ],
+      "terme_normalise": "300 mA"
+    },
+    {
+      "groupe": "tension_230v",
+      "variantes": [
+        "230V",
+        "230v",
+        "230 V",
+        "230 volts",
+        "tension 230",
+        "monophasé"
+      ],
+      "terme_normalise": "230 V"
+    },
+    {
+      "groupe": "tension_400v",
+      "variantes": [
+        "400V",
+        "400v",
+        "400 V",
+        "400 volts",
+        "tension 400",
+        "triphasé",
+        "tri"
+      ],
+      "terme_normalise": "400 V"
+    },
+    {
+      "groupe": "boite_connexion",
+      "variantes": [
+        "boîte de dérivation",
+        "boite de dérivation",
+        "boîte électrique",
+        "boite électrique",
+        "boîte DCL",
+        "boitier de connexion"
+      ],
+      "terme_normalise": "boîte de connexion"
+    },
+    {
+      "groupe": "borne_connexion",
+      "variantes": [
+        "domino",
+        "dominos",
+        "borne",
+        "bornier",
+        "wago",
+        "borne automatique",
+        "connecteur"
+      ],
+      "terme_normalise": "borne de connexion"
+    },
+    {
+      "groupe": "gaine_technique_logement",
+      "variantes": [
+        "GTL",
+        "gaine technique logement",
+        "gaine technique",
+        "ETEL",
+        "espace technique électrique",
+        "colonne technique"
+      ],
+      "terme_normalise": "gaine technique logement (GTL)"
+    },
+    {
+      "groupe": "norme_nfc15_100",
+      "variantes": [
+        "NF C 15-100",
+        "NFC 15-100",
+        "NFC15-100",
+        "norme C15-100",
+        "C 15-100",
+        "norme électrique",
+        "réglementation électrique"
+      ],
+      "terme_normalise": "NF C 15-100"
+    },
+    {
+      "groupe": "circuit_eclairage",
+      "variantes": [
+        "circuit lumière",
+        "circuit d'éclairage",
+        "circuit lampe",
+        "circuit luminaire",
+        "éclairage"
+      ],
+      "terme_normalise": "circuit d'éclairage"
+    },
+    {
+      "groupe": "circuit_prise",
+      "variantes": [
+        "circuit prise",
+        "circuit de prises",
+        "circuit prises de courant",
+        "prises",
+        "PC"
+      ],
+      "terme_normalise": "circuit de prises de courant"
+    },
+    {
+      "groupe": "circuit_specialise",
+      "variantes": [
+        "circuit spécialisé",
+        "circuit dédié",
+        "circuit spécial",
+        "prise dédiée",
+        "ligne spécialisée"
+      ],
+      "terme_normalise": "circuit spécialisé"
+    },
+    {
+      "groupe": "indice_protection",
+      "variantes": [
+        "IP",
+        "indice de protection",
+        "degré de protection",
+        "IP44",
+        "IP65",
+        "étanchéité"
+      ],
+      "terme_normalise": "indice de protection (IP)"
+    },
+    {
+      "groupe": "indice_choc",
+      "variantes": [
+        "IK",
+        "indice de choc",
+        "résistance aux chocs",
+        "IK07",
+        "IK08",
+        "IK10"
+      ],
+      "terme_normalise": "indice de résistance aux chocs (IK)"
+    },
+    {
+      "groupe": "parafoudre",
+      "variantes": [
+        "parafoudre",
+        "parasurtenseur",
+        "protection foudre",
+        "paratonnerre électrique",
+        "SPD"
+      ],
+      "terme_normalise": "parafoudre"
+    },
+    {
+      "groupe": "schema_electrique",
+      "variantes": [
+        "schéma électrique",
+        "plan électrique",
+        "schéma unifilaire",
+        "schéma de câblage",
+        "plan installation",
+        "repérage circuits"
+      ],
+      "terme_normalise": "schéma électrique"
+    },
+    {
+      "groupe": "volume_salle_eau",
+      "variantes": [
+        "volume salle de bain",
+        "volume salle d'eau",
+        "zone salle de bain",
+        "volume 0",
+        "volume 1",
+        "volume 2",
+        "périmètre de sécurité"
+      ],
+      "terme_normalise": "volume de salle d'eau"
+    },
+    {
+      "groupe": "classe_materiel",
+      "variantes": [
+        "classe I",
+        "classe II",
+        "classe III",
+        "double isolation",
+        "isolation renforcée",
+        "matériel classe 2"
+      ],
+      "terme_normalise": "classe de matériel"
+    }
+  ]
+}

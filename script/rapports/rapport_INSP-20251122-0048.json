@@ -1,0 +1,297 @@
+{
+  "metadata": {
+    "titre": "Rapport d'Inspection Électrique",
+    "site": "Résidence Les Oliviers - Bâtiment A",
+    "adresse": "45 Avenue de la République, 13001 Marseille",
+    "inspecteur": "Jean-Pierre Martin",
+    "date_inspection": "22/11/2025",
+    "date_generation": "22/11/2025 00:48",
+    "norme_reference": "NFC 15-100",
+    "numero_rapport": "INSP-20251122-0048"
+  },
+  "statistiques": {
+    "total": 5,
+    "critique": 3,
+    "majeur": 2,
+    "mineur": 0,
+    "inconnu": 0,
+    "taux_conformite": 40.0
+  },
+  "observations": [
+    {
+      "observation_brute": "prise pas terre cuisine",
+      "observation_corrigee": "Absence de prise de terre dans la cuisine, non-conformité aux exigences de sécurité électrique",
+      "references_normatives": [
+        "NFC 15-100 Article 55.1 - Exigences générales pour les installations électriques dans les locaux à usage culinaire",
+        "NFC 15-100 Article 61.1 - Dispositions spécifiques pour les prises de courant et les prises de terre dans les cuisines"
+      ],
+      "niveau_gravite": "Critique",
+      "risques_identifies": [
+        "Risque d'électrocution",
+        "Risque d'incendie"
+      ],
+      "actions_correctives": [
+        "Installation d'une prise de terre conforme aux normes",
+        "Vérification et mise à jour de l'installation électrique pour garantir la sécurité"
+      ],
+      "delai_recommande": "immédiat",
+      "localisation": "Cuisine",
+      "contexte_utilise": {
+        "documents_count": 3,
+        "documents_details": [
+          {
+            "norme": null,
+            "article": "Article 1",
+            "type": "article_normatif",
+            "score": 0.8552182270543014
+          },
+          {
+            "norme": null,
+            "article": "Article 2",
+            "type": "article_normatif",
+            "score": 0.8796186993292205
+          },
+          {
+            "norme": null,
+            "article": "Article 1",
+            "type": "article_normatif",
+            "score": 0.8803607217625693
+          }
+        ],
+        "scores_similarite": [
+          0.8552182270543014,
+          0.8796186993292205,
+          0.8803607217625693
+        ]
+      },
+      "timestamp": "2025-11-22T00:48:13.012167",
+      "pipeline_version": "1.1",
+      "llm_model": "llama-3.3-70b-versatile",
+      "numero_observation": 1,
+      "numero": 1
+    },
+    {
+      "observation_brute": "disjoncteur différentiel 30mA manquant salle de bain",
+      "observation_corrigee": "Absence de disjoncteur différentiel de sensibilité 30 mA dans la salle de bain, non conforme aux exigences de sécurité électrique",
+      "references_normatives": [
+        "NFC 15-100 Article 55.1 - Disjoncteurs différentiels de sensibilité 30 mA obligatoires dans les salles de bain",
+        "NFC 15-100 Article 56.2 - Exigences pour les installations électriques dans les locaux à usage d'habitation, notamment les salles de bain"
+      ],
+      "niveau_gravite": "Critique",
+      "risques_identifies": [
+        "Risque d'électrocution",
+        "Risque d'incendie"
+      ],
+      "actions_correctives": [
+        "Installation d'un disjoncteur différentiel de sensibilité 30 mA dans la salle de bain",
+        "Vérification de la conformité de l'installation électrique aux normes NFC 15-100"
+      ],
+      "delai_recommande": "immédiat",
+      "localisation": "Salle de bain",
+      "contexte_utilise": {
+        "documents_count": 3,
+        "documents_details": [
+          {
+            "norme": null,
+            "article": "Article 1",
+            "type": "article_normatif",
+            "score": 0.8349425684229956
+          },
+          {
+            "norme": null,
+            "article": "Article 3",
+            "type": "article_normatif",
+            "score": 0.8474593234413703
+          },
+          {
+            "norme": null,
+            "article": null,
+            "type": "article_normatif",
+            "score": 0.8542221962586591
+          }
+        ],
+        "scores_similarite": [
+          0.8349425684229956,
+          0.8474593234413703,
+          0.8542221962586591
+        ]
+      },
+      "timestamp": "2025-11-22T00:48:14.008645",
+      "pipeline_version": "1.1",
+      "llm_model": "llama-3.3-70b-versatile",
+      "numero_observation": 2,
+      "numero": 2
+    },
+    {
+      "observation_brute": "câble section insuffisante chauffage salon",
+      "observation_corrigee": "Câble de section insuffisante pour le chauffage du salon, ne respectant pas les exigences de la norme NFC 15-100 en termes de dimensionnement et de protection contre les surcharges électriques",
+      "references_normatives": [
+        "NFC 15-100 Article 526.10.2.1 - Connexion des appareils par l'intermédiaire d'une canalisation semi-fixe",
+        "NFC 15-100 Article 270.21.1 - Définition d'un socle de prise de courant et des exigences pour les câbles et les conducteurs"
+      ],
+      "niveau_gravite": "Majeur",
+      "risques_identifies": [
+        "Risque d'incendie",
+        "Risque d'électrocution",
+        "Risque de surchauffe"
+      ],
+      "actions_correctives": [
+        "Vérifier et ajuster la section des câbles pour le chauffage du salon selon les spécifications de la norme NFC 15-100",
+        "Assurer que les câbles soient protégés contre les surcharges électriques et les conditions environnementales",
+        "Réviser l'installation électrique pour garantir la conformité avec les articles pertinents de la norme NFC 15-100"
+      ],
+      "delai_recommande": "30 jours",
+      "localisation": "Salon, système de chauffage",
+      "contexte_utilise": {
+        "documents_count": 3,
+        "documents_details": [
+          {
+            "norme": "NF C15-100-1",
+            "article": null,
+            "type": "article_normatif",
+            "score": 0.845358091741609
+          },
+          {
+            "norme": "NF C15-100-1",
+            "article": "Article 270.21.1",
+            "type": "article_normatif",
+            "score": 0.8638807700899633
+          },
+          {
+            "norme": "NF C15-100-1",
+            "article": null,
+            "type": "article_normatif",
+            "score": 0.8695089159445999
+          }
+        ],
+        "scores_similarite": [
+          0.845358091741609,
+          0.8638807700899633,
+          0.8695089159445999
+        ]
+      },
+      "timestamp": "2025-11-22T00:48:15.328621",
+      "pipeline_version": "1.1",
+      "llm_model": "llama-3.3-70b-versatile",
+      "numero_observation": 3,
+      "numero": 3
+    },
+    {
+      "observation_brute": "tableau électrique encombré garage",
+      "observation_corrigee": "Tableau électrique encombré dans le garage, nécessitant une mise en conformité avec les normes électriques françaises NFC 15-100",
+      "references_normatives": [
+        "NFC 15-100 Article 551.1.2 - Sont notamment pris en considèration les générateurs d’énergie électrique possédant les caractéristiques électriques suivantes",
+        "NFC 15-100 Article EL 14 - Alimentation électrique des installations de sécurité à partir d’une dérivation issue du tableau principal"
+      ],
+      "niveau_gravite": "Majeur",
+      "risques_identifies": [
+        "Risque d'incendie",
+        "Risque d'électrocution",
+        "Risque de dysfonctionnement des installations de sécurité"
+      ],
+      "actions_correctives": [
+        "Nettoyage et dégagement du tableau électrique",
+        "Vérification et mise en conformité des installations électriques avec les normes NFC 15-100",
+        "Installation d'un système de protection contre les surcharges et les courts-circuits"
+      ],
+      "delai_recommande": "30 jours",
+      "localisation": "Garage",
+      "contexte_utilise": {
+        "documents_count": 3,
+        "documents_details": [
+          {
+            "norme": "NF C15-100-1",
+            "article": "Article 551.1.2",
+            "type": "article_normatif",
+            "score": 0.9211239918612364
+          },
+          {
+            "norme": null,
+            "article": "Article 1",
+            "type": "article_normatif",
+            "score": 0.9233772936566123
+          },
+          {
+            "norme": "NF C15-100-1",
+            "article": null,
+            "type": "article_normatif",
+            "score": 0.9293942641513371
+          }
+        ],
+        "scores_similarite": [
+          0.9211239918612364,
+          0.9233772936566123,
+          0.9293942641513371
+        ]
+      },
+      "timestamp": "2025-11-22T00:48:16.552760",
+      "pipeline_version": "1.1",
+      "llm_model": "llama-3.3-70b-versatile",
+      "numero_observation": 4,
+      "numero": 4
+    },
+    {
+      "observation_brute": "protection parafoudre manquante",
+      "observation_corrigee": "Absence de protection parafoudre pour prévenir les surtensions de manœuvre et assurer la protection des équipements sensibles",
+      "references_normatives": [
+        "NFC 15-100 Article 445 - Les dispositifs de protection situés en amont de l’origine de l’installation ne peuvent pas être considérés comme une protection contre les surintensités du parafoudre",
+        "NFC 15-100 Article 436 - Des parafoudres dédiés à la protection contre les surtensions de manœuvre peuvent être nécessaires pour prévenir le vieillissement prématuré des équipements sensibles"
+      ],
+      "niveau_gravite": "Critique",
+      "risques_identifies": [
+        "Risque d'électrocution",
+        "Risque d'incendie",
+        "Risque de dommages aux équipements"
+      ],
+      "actions_correctives": [
+        "Installation de parafoudres dédiés à la protection contre les surtensions de manœuvre",
+        "Vérification de la conformité des dispositifs de protection existants",
+        "Mise en place d'une protection complète contre les surintensités"
+      ],
+      "delai_recommande": "immédiat",
+      "localisation": "À proximité des équipements sensibles et à l’origine de l’installation",
+      "contexte_utilise": {
+        "documents_count": 3,
+        "documents_details": [
+          {
+            "norme": "NF C15-100-1",
+            "article": null,
+            "type": "article_normatif",
+            "score": 0.8133004565190145
+          },
+          {
+            "norme": "NF C15-100-1",
+            "article": null,
+            "type": "article_normatif",
+            "score": 0.8164447320449426
+          },
+          {
+            "norme": "NF C15-100-1",
+            "article": null,
+            "type": "article_normatif",
+            "score": 0.8392846804315965
+          }
+        ],
+        "scores_similarite": [
+          0.8133004565190145,
+          0.8164447320449426,
+          0.8392846804315965
+        ]
+      },
+      "timestamp": "2025-11-22T00:48:17.785633",
+      "pipeline_version": "1.1",
+      "llm_model": "llama-3.3-70b-versatile",
+      "numero_observation": 5,
+      "numero": 5
+    }
+  ],
+  "resume": {
+    "resume_general": "L'inspection a révélé 5 observation(s) au total. ⚠️ ATTENTION: 3 observation(s) critique(s) nécessitant une intervention IMMÉDIATE. 2 observation(s) majeure(s) à corriger sous 30 jours.",
+    "observations_critiques": [
+      "Absence de prise de terre dans la cuisine, non-conformité aux exigences de sécurité électrique",
+      "Absence de disjoncteur différentiel de sensibilité 30 mA dans la salle de bain, non conforme aux exigences de sécurité électrique",
+      "Absence de protection parafoudre pour prévenir les surtensions de manœuvre et assurer la protection des équipements sensibles"
+    ],
+    "taux_conformite": 40.0
+  }
+}

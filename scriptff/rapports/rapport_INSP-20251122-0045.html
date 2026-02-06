@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport d'Inspection Électrique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            border-bottom: 4px solid #2563EB;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #1e40af;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .metadata {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .metadata-item {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .metadata-label {
+            font-weight: bold;
+            color: #64748b;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-card.total { background: #2563EB; }
+        .stat-card.critique { background: #DC2626; }
+        .stat-card.majeur { background: #F59E0B; }
+        .stat-card.mineur { background: #10B981; }
+        
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            margin: 40px 0;
+        }
+        
+        h2 {
+            color: #1e40af;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .observation {
+            margin: 20px 0;
+            padding: 20px;
+            border-left: 4px solid #e5e7eb;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+        
+        .observation.critique { border-left-color: #DC2626; }
+        .observation.majeur { border-left-color: #F59E0B; }
+        .observation.mineur { border-left-color: #10B981; }
+        
+        .observation-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+        
+        .observation-detail {
+            margin: 10px 0;
+            padding: 8px 0;
+        }
+        
+        .observation-label {
+            font-weight: bold;
+            color: #64748b;
+            display: inline-block;
+            min-width: 150px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .badge.critique { background: #DC2626; }
+        .badge.majeur { background: #F59E0B; }
+        .badge.mineur { background: #10B981; }
+        
+        .actions-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .actions-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .actions-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #2563EB;
+            font-weight: bold;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Rapport d'Inspection Électrique</h1>
+            <p>Rapport N° INSP-20251122-0045</p>
+        </div>
+        
+        <div class="metadata">
+            <div class="metadata-item">
+                <span class="metadata-label">Site:</span>
+                <span>Résidence Les Oliviers - Bâtiment A</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Adresse:</span>
+                <span>45 Avenue de la République, 13001 Marseille</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Inspecteur:</span>
+                <span>Jean-Pierre Martin</span>
+            </div>
+            <div class="metadata-item">
+                <span class="metadata-label">Date d'inspection:</span>
+                <span>22/11/2025</span>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card total">
+                <div class="stat-label">Total</div>
+                <div class="stat-number">5</div>
+                <div class="stat-label">Observations</div>
+            </div>
+            <div class="stat-card critique">
+                <div class="stat-label">Critiques</div>
+                <div class="stat-number">3</div>
+                <div class="stat-label">Danger immédiat</div>
+            </div>
+            <div class="stat-card majeur">
+                <div class="stat-label">Majeurs</div>
+                <div class="stat-number">2</div>
+                <div class="stat-label">À corriger</div>
+            </div>
+            <div class="stat-card mineur">
+                <div class="stat-label">Mineurs</div>
+                <div class="stat-number">0</div>
+                <div class="stat-label">Amélioration</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📝 Résumé Exécutif</h2>
+            <p>L'inspection a révélé 5 observation(s) au total. ⚠️ ATTENTION: 3 observation(s) critique(s) nécessitant une intervention IMMÉDIATE. 2 observation(s) majeure(s) à corriger sous 30 jours.</p>
+        </div>
+
+        <div class="section">
+            <h2>Observations Critiques (3)</h2>
+
+            <div class="observation critique">
+                <div class="observation-title">
+                    1. Absence de prise de terre dans la cuisine, non-conformité aux exigences de sécurité électrique
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📍 Localisation:</span>
+                    Cuisine
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📚 Références:</span>
+                    NFC 15-100 Article 55.1 - Exigences générales pour les installations électriques dans les locaux à usage culinaire, NFC 15-100 Article 61.1 - Dispositions spécifiques pour les prises de courant et les prises de terre dans les cuisines
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🚨 Risques:</span>
+                    Risque d'électrocution, Risque d'incendie
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🔧 Actions:</span>
+                    <ul class="actions-list">
+                        <li>Installation d'une prise de terre conforme aux normes</li>
+                        <li>Vérification et mise à jour de l'installation électrique pour garantir la sécurité</li>
+
+                    </ul>
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">⏰ Délai:</span>
+                    <span class="badge critique">immédiat</span>
+                </div>
+            </div>
+
+            <div class="observation critique">
+                <div class="observation-title">
+                    2. Absence de disjoncteur différentiel de sensibilité 30 mA dans la salle de bain, non conforme aux exigences de sécurité électrique
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📍 Localisation:</span>
+                    Salle de bain
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📚 Références:</span>
+                    NFC 15-100 Article 55.1 - Disjoncteurs différentiels de sensibilité 30 mA obligatoires dans les salles de bain, NFC 15-100 Article 61.2 - Exigences pour les installations électriques dans les locaux à usage d'habitation, notamment les salles de bain
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🚨 Risques:</span>
+                    Risque d'électrocution, Risque d'incendie
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🔧 Actions:</span>
+                    <ul class="actions-list">
+                        <li>Installation d'un disjoncteur différentiel de sensibilité 30 mA dans la salle de bain</li>
+                        <li>Vérification de la conformité de l'installation électrique aux normes NFC 15-100</li>
+
+                    </ul>
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">⏰ Délai:</span>
+                    <span class="badge critique">immédiat</span>
+                </div>
+            </div>
+
+            <div class="observation critique">
+                <div class="observation-title">
+                    3. Absence de protection parafoudre pour prévenir les surtensions de manœuvre et assurer la protection des équipements sensibles
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📍 Localisation:</span>
+                    Proche des équipements sensibles
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📚 Références:</span>
+                    NFC 15-100 Article 436 - Des parafoudres dédiés à la protection contre les surtensions de manœuvre peuvent être nécessaires pour prévenir du vieillissement prématuré des équipements sensibles, NFC 15-100 Article 445 - Les dispositifs de protection situés en amont de l’origine de l’installation ne peuvent pas être considérés comme une protection contre les surintensités du parafoudre
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🚨 Risques:</span>
+                    Risque d'électrocution, Risque d'incendie, Risque de dommages aux équipements
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🔧 Actions:</span>
+                    <ul class="actions-list">
+                        <li>Installation de parafoudres dédiés à la protection contre les surtensions de manœuvre</li>
+                        <li>Vérification de la conformité des dispositifs de protection existants</li>
+                        <li>Mise en place d'une protection contre les surintensités du parafoudre</li>
+
+                    </ul>
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">⏰ Délai:</span>
+                    <span class="badge critique">immédiat</span>
+                </div>
+            </div>
+
+        <div class="section">
+            <h2>Observations Majeurs (2)</h2>
+
+            <div class="observation majeur">
+                <div class="observation-title">
+                    1. Câble de section insuffisante pour le chauffage du salon, ne respectant pas les exigences de la norme NFC 15-100 en termes de dimensionnement et de protection contre les surcharges électriques
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📍 Localisation:</span>
+                    Salon, système de chauffage
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📚 Références:</span>
+                    NFC 15-100 Article 526.10.2.1 - Connexion des appareils par l'intermédiaire d'une canalisation semi-fixe, NFC 15-100 Article 270.21.1 - Définition d'un socle de prise de courant et des exigences pour les câbles et les conducteurs
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🚨 Risques:</span>
+                    Risque d'incendie, Risque d'électrocution, Risque de surchauffe
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🔧 Actions:</span>
+                    <ul class="actions-list">
+                        <li>Vérifier et ajuster la section des câbles pour le chauffage du salon selon les spécifications de la norme NFC 15-100</li>
+                        <li>Assurer que les câbles soient protégés contre les surcharges électriques et les dommages mécaniques</li>
+                        <li>Installer des dispositifs de protection contre les surintensités et les courts-circuits</li>
+
+                    </ul>
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">⏰ Délai:</span>
+                    <span class="badge majeur">30 jours</span>
+                </div>
+            </div>
+
+            <div class="observation majeur">
+                <div class="observation-title">
+                    2. Tableau électrique encombré dans le garage, nécessitant une mise en conformité avec les normes électriques françaises NFC 15-100
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📍 Localisation:</span>
+                    Garage
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">📚 Références:</span>
+                    NFC 15-100 Article 551.1.2 - Sont notamment pris en considèration les générateurs d’énergie électrique possédant les caractéristiques électriques suivantes, NFC 15-100 Article EL 14 - Alimentation électrique des installations de sécurité à partir d’une dérivation issue du tableau principal
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🚨 Risques:</span>
+                    Risque d'incendie, Risque d'électrocution, Risque de dysfonctionnement des installations de sécurité
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">🔧 Actions:</span>
+                    <ul class="actions-list">
+                        <li>Nettoyage et dégagement du tableau électrique</li>
+                        <li>Vérification et mise en conformité des installations électriques avec les normes NFC 15-100</li>
+                        <li>Installation d'un système de protection contre les surcharges et les courts-circuits</li>
+
+                    </ul>
+                </div>
+                <div class="observation-detail">
+                    <span class="observation-label">⏰ Délai:</span>
+                    <span class="badge majeur">30 jours</span>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="footer">
+            <p>Rapport généré automatiquement le 22/11/2025 00:45</p>
+            <p>Conforme à la norme NFC 15-100</p>
+        </div>
+    </div>
+</body>
+</html>

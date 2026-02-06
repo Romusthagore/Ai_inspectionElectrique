@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "titre": "Rapport d'Inspection Électrique",
+    "site": "Immeuble Les Palmiers",
+    "adresse": "123 Avenue des Champs, 75008 Paris",
+    "inspecteur": "Jean Dupont",
+    "date_inspection": "22/11/2024",
+    "date_generation": "22/11/2025 11:51",
+    "norme_reference": "NFC 15-100",
+    "numero_rapport": "INSP-2024-001"
+  },
+  "statistiques": {
+    "total": 3,
+    "critique": 1,
+    "majeur": 1,
+    "mineur": 1,
+    "inconnu": 0,
+    "taux_conformite": 66.66666666666667
+  },
+  "observations": [
+    {
+      "observation_corrigee": "Absence de dispositif différentiel 30mA dans le circuit cuisine",
+      "references_normatives": [
+        "NFC 15-100 Article 55.1",
+        "NFC 15-100 Article 411.3.3"
+      ],
+      "niveau_gravite": "Critique",
+      "risques_identifies": [
+        "Électrocution",
+        "Incendie"
+      ],
+      "actions_correctives": [
+        "Installer DDR 30mA Type A",
+        "Vérifier mise à la terre"
+      ],
+      "delai_recommande": "immédiat",
+      "localisation": "Cuisine"
+    },
+    {
+      "observation_corrigee": "Câble de section insuffisante sur le circuit chauffage",
+      "references_normatives": [
+        "NFC 15-100 Article 52.1"
+      ],
+      "niveau_gravite": "Majeur",
+      "risques_identifies": [
+        "Échauffement",
+        "Risque d'incendie"
+      ],
+      "actions_correctives": [
+        "Remplacer par câble 2.5mm²",
+        "Vérifier protection amont"
+      ],
+      "delai_recommande": "30 jours",
+      "localisation": "Salon"
+    },
+    {
+      "observation_corrigee": "Tableau électrique encombré - espace de maintenance insuffisant",
+      "references_normatives": [
+        "NFC 15-100 Article 55.2"
+      ],
+      "niveau_gravite": "Mineur",
+      "risques_identifies": [
+        "Difficultés d'intervention"
+      ],
+      "actions_correctives": [
+        "Dégager l'espace autour du tableau",
+        "Réorganiser les équipements"
+      ],
+      "delai_recommande": "90 jours",
+      "localisation": "Garage"
+    }
+  ],
+  "resume": {
+    "resume_general": "L'inspection a révélé 3 observation(s) au total. ⚠️ ATTENTION: 1 observation(s) critique(s) nécessitant une intervention IMMÉDIATE. 1 observation(s) majeure(s) à corriger sous 30 jours. 1 observation(s) mineure(s) recommandées pour amélioration.",
+    "observations_critiques": [
+      "Absence de dispositif différentiel 30mA dans le circuit cuisine"
+    ],
+    "taux_conformite": 66.66666666666667
+  }
+}
